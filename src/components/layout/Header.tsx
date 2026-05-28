@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Search, ShoppingBag, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -50,8 +51,17 @@ export default function Header() {
           </button>
 
           {/* Logo */}
-          <Link href="/" className="text-2xl font-serif font-bold tracking-tighter text-brand-brown">
-            ĐÈN THIỀN
+          <Link href="/" className="flex items-center gap-3">
+            <Image 
+              src="/logo.png" 
+              alt="Đèn Thiền Logo" 
+              width={48} 
+              height={48} 
+              className="rounded-full object-cover"
+            />
+            <span className="hidden sm:inline-block text-2xl font-serif font-bold tracking-tighter text-brand-brown">
+              ĐÈN THIỀN
+            </span>
           </Link>
 
           {/* Desktop Nav */}

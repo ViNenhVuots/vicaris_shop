@@ -83,17 +83,18 @@ export async function getProductBySlug(slug: string): Promise<ProductData | null
     if (error) throw error;
 
     if (data) {
+      const anyData = data as any;
       return {
-        id: data.id,
-        slug: data.slug,
-        name: data.name,
-        price: Number(data.price),
-        image: data.image_url || "/images/products/placeholder.png",
-        images: data.images || [],
-        category: data.categories?.name || "Sản phẩm",
-        description: data.description || "",
-        features: data.features || [],
-        isCombo: data.name.toLowerCase().includes("combo"),
+        id: anyData.id,
+        slug: anyData.slug,
+        name: anyData.name,
+        price: Number(anyData.price),
+        image: anyData.image_url || "/images/products/placeholder.png",
+        images: anyData.images || [],
+        category: anyData.categories?.name || "Sản phẩm",
+        description: anyData.description || "",
+        features: anyData.features || [],
+        isCombo: anyData.name.toLowerCase().includes("combo"),
       };
     }
 

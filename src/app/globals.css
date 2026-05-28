@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-beige: #F5F5DC;
+  --color-brand-paper: #F9F6F0;
+  --color-brand-brown: #5C4033;
+  --color-brand-yellow: #F4C430;
+  --color-brand-ink: #1A1A1A;
+  --color-brand-gray: #f3f4f6;
+  --color-brand-terracotta: #C4642D;
+  --color-brand-text: #2D2D2D;
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+}
+
+@layer base {
+  body {
+    background-color: var(--color-brand-beige);
+    color: var(--color-brand-ink);
+  }
+}

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { products } from "@/data/products";
+import { getProducts } from "@/services/productService";
 import { Search, SlidersHorizontal, Eye } from "lucide-react";
 
 export const metadata = {
@@ -8,7 +8,9 @@ export const metadata = {
   description: "Khám phá các sản phẩm đèn thiền và combo quà tặng cao cấp từ Quỹ Bảo trợ giáo dục Vicaris.",
 };
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const products = await getProducts();
+
   return (
     <div className="bg-brand-paper min-h-screen py-12">
       <div className="container mx-auto px-4 md:px-8">
@@ -49,6 +51,7 @@ export default function ProductsPage() {
                   src={product.image} 
                   alt={product.name} 
                   fill 
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 

@@ -1,22 +1,14 @@
 "use client";
 
 import ProductCard from "@/components/product/ProductCard";
-import { Product } from "@/store/cartStore";
 import Link from "next/link";
+import { ProductData } from "@/data/products";
 
-import { products } from "@/data/products";
+interface FeaturedProductsProps {
+  products: ProductData[];
+}
 
-// Use the first 3 products from our mock data
-const FEATURED_PRODUCTS = products.slice(0, 3).map(p => ({
-  id: p.id,
-  name: p.name,
-  price: p.price,
-  image: p.image,
-  slug: p.slug,
-  category: p.category
-}));
-
-export default function FeaturedProducts() {
+export default function FeaturedProducts({ products }: FeaturedProductsProps) {
   return (
     <section className="py-24 bg-brand-paper">
       <div className="container mx-auto px-4 md:px-8">
@@ -32,8 +24,8 @@ export default function FeaturedProducts() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {FEATURED_PRODUCTS.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product as any} />
           ))}
         </div>
         

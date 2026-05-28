@@ -2,14 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { Star, ArrowLeft } from "lucide-react";
 import ProductConfigurator from "@/components/product/ProductConfigurator";
-import { products } from "@/data/products";
+import { getProductBySlug } from "@/services/productService";
 import { notFound } from "next/navigation";
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   
-  // Find product from mock data
-  const product = products.find(p => p.slug === slug);
+  const product = await getProductBySlug(slug);
   
   if (!product) {
     notFound();
@@ -37,6 +36,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 src={product.image} 
                 alt={product.name} 
                 fill 
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
                 priority
               />
@@ -44,7 +44,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <div className="grid grid-cols-4 gap-4">
               {product.images.map((img, idx) => (
                 <div key={idx} className="aspect-square relative rounded-lg overflow-hidden shadow-sm border border-brand-brown/10 hover:border-brand-yellow cursor-pointer transition-colors">
-                  <Image src={img} alt={`${product.name} ${idx + 1}`} fill className="object-cover" />
+                  <Image src={img} alt={`${product.name} ${idx + 1}`} fill sizes="(max-width: 768px) 25vw, 15vw" className="object-cover" />
                 </div>
               ))}
             </div>

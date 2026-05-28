@@ -3,8 +3,11 @@ import Story from "@/components/home/Story";
 import Materials from "@/components/home/Materials";
 import Charity from "@/components/home/Charity";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
+import { getFeaturedProducts } from "@/services/productService";
 
-export default function Home() {
+export default async function Home() {
+  const featuredProducts = await getFeaturedProducts();
+
   return (
     <div className="flex flex-col w-full bg-brand-beige">
       <Hero />
@@ -54,7 +57,7 @@ export default function Home() {
         </div>
       </section>
 
-      <FeaturedProducts />
+      <FeaturedProducts products={featuredProducts} />
       <Charity />
     </div>
   );

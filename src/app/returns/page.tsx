@@ -1,4 +1,4 @@
-import { RotateCcw, CheckCircle2, XCircle, AlertTriangle } from "lucide-react";
+import { RotateCcw, CheckCircle2, XCircle } from "lucide-react";
 
 export const metadata = {
   title: "Chính sách đổi trả | Đèn thiền Mực, trà và thi",

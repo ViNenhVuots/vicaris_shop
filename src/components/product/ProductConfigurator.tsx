@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { useCartStore } from "@/store/cartStore";
-import { ShoppingBag, ShieldCheck, Truck, RotateCcw } from "lucide-react";
+import { ShoppingBag, ShieldCheck, Truck, Leaf, Gift, Check, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 import { ProductData } from "@/data/products";
+import { motion } from "framer-motion";
 
 interface ConfiguratorProps {
   productBase: ProductData;
@@ -13,31 +14,26 @@ interface ConfiguratorProps {
 export default function ProductConfigurator({ productBase }: ConfiguratorProps) {
   const addItem = useCartStore((state) => state.addItem);
 
-  const [combo, setCombo] = useState(productBase.comboDetails || "Không");
+  const [combo, setCombo] = useState("Không");
   const [size, setSize] = useState("Nhỏ (15x15x18cm)");
   const [motif, setMotif] = useState("Đá và hoa + chữ Tâm An");
   const [wood, setWood] = useState("Gỗ me tây");
-  const [light, setLight] = useState("Đèn LED");
+  const [light, setLight] = useState("LED");
   const [quantity, setQuantity] = useState(1);
-  const [price, setPrice] = useState(productBase.price || 370000);
 
-  // Price Calculation
+  // Derived Price Calculation
+  const price = combo !== "Không" 
+    ? 777000 
+    : size === "Nhỏ (15x15x18cm)" 
+      ? 370000 
+      : 450000;
+
   useEffect(() => {
-    if (combo !== "Không") {
-      setPrice(777000);
-    } else {
-      if (size === "Nhỏ (15x15x18cm)") {
-        setPrice(370000);
-      } else {
-        setPrice(450000);
-      }
-    }
-    
-    // Auto-adjust motif if large size is not selected
-    if (size === "Nhỏ (15x15x18cm)" && motif === "Hoa sen thủy mặc + chữ Nẻo về sen nở (chỉ đèn lớn)") {
+    if (size === "Nhỏ (15x15x18cm)" && motif === "Hoa sen thủy mặc + chữ Nẻo về sen nở") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setMotif("Hoa sen thủy mặc");
     }
-  }, [combo, size, motif]);
+  }, [size, motif]);
 
   const handleAddToCart = () => {
     const optionsStr = `Combo: ${combo} | Kích thước: ${size} | Họa tiết: ${motif} | Loại đế: ${wood} | Ánh sáng: ${light}`;
@@ -54,81 +50,54 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
   };
 
   return (
-    <div>
-      <div className="text-3xl font-bold text-brand-terracotta mb-6 font-serif">
-        {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price)}
+    <div className="flex flex-col gap-8">
+      {/* Short Description */}
+      <div className="prose prose-brand font-serif text-brand-ink/80 text-lg leading-relaxed">
+        <p>
+          Một sáng tác đề cao nét thiền từ chất liệu và ánh sáng mộc mạc.<br/>
+          Với hai lựa chọn LED hoặc nến tealight, chiếc đèn mang đến sự tĩnh lặng và thi vị cho không gian sống.
+        </p>
       </div>
 
-      <div className="space-y-6 mb-8">
+      {/* Badges */}
+      <div className="grid grid-cols-2 gap-3 text-sm font-medium text-brand-brown font-serif">
+        <div className="flex items-center gap-2"><CheckCircle2 className="text-brand-yellow" size={18} /> <span>Handmade</span></div>
+        <div className="flex items-center gap-2"><CheckCircle2 className="text-brand-yellow" size={18} /> <span>Giấy dó thủ công</span></div>
+        <div className="flex items-center gap-2"><CheckCircle2 className="text-brand-yellow" size={18} /> <span>Gỗ tái sinh</span></div>
+        <div className="flex items-center gap-2"><CheckCircle2 className="text-brand-yellow" size={18} /> <span>Quà tặng ý nghĩa</span></div>
+      </div>
+
+      {/* Price */}
+      <div className="py-4 border-y border-brand-brown/10">
+        <div className="text-4xl font-bold text-brand-terracotta font-serif">
+          {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price)}
+        </div>
+        <div className="mt-2 text-sm text-brand-ink/60 flex items-center gap-2">
+          <Truck size={16} /> Miễn phí vận chuyển cho đơn từ 699.000đ
+        </div>
+      </div>
+
+      {/* Options */}
+      <div className="space-y-6">
         {/* Combo */}
         <div>
-          <label className="block text-sm font-medium text-brand-brown mb-2 font-serif">Combo (Tiết kiệm hơn)</label>
+          <div className="flex justify-between items-center mb-3">
+            <label className="text-sm font-medium text-brand-brown font-serif uppercase tracking-wider">1. Combo</label>
+            <span className="text-xs text-brand-terracotta font-medium bg-brand-terracotta/10 px-2 py-1 rounded">Tiết kiệm hơn</span>
+          </div>
           <div className="grid grid-cols-4 gap-2">
             {["Không", "ĐT1", "ĐT2", "ĐT3"].map((opt) => (
               <button
                 key={opt}
                 onClick={() => setCombo(opt)}
-                className={`py-2 px-3 border rounded text-sm transition-colors ${
+                className={`relative py-3 px-1 border rounded-lg text-sm transition-all duration-300 font-medium ${
                   combo === opt 
-                    ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium" 
-                    : "border-gray-200 text-gray-600 hover:border-brand-yellow"
+                    ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown shadow-sm" 
+                    : "border-gray-200 text-gray-500 hover:border-brand-yellow/50 hover:bg-brand-paper"
                 }`}
               >
-                {opt}
-              </button>
-            ))}
-          </div>
-          {combo !== "Không" && (
-            <div className="mt-3 p-3 bg-brand-brown/5 rounded border border-brand-brown/10 text-sm text-brand-ink/80 font-serif leading-relaxed">
-              {combo === "ĐT1" && (
-                <>
-                  <strong>Combo ĐT1 bao gồm:</strong>
-                  <ul className="list-disc ml-5 mt-1">
-                    <li>1 đèn nhỏ thắp nến tealight</li>
-                    <li>1 đèn lớn ánh sáng LED</li>
-                    <li>Tặng 1 gói trà Sơn Động</li>
-                  </ul>
-                </>
-              )}
-              {combo === "ĐT2" && (
-                <>
-                  <strong>Combo ĐT2 bao gồm:</strong>
-                  <ul className="list-disc ml-5 mt-1">
-                    <li>1 đèn thiền Mực Trà và Thi (tuỳ chọn cấu hình bên dưới)</li>
-                    <li>Tặng 1 gói trà thảo dược Sơn Động</li>
-                  </ul>
-                </>
-              )}
-              {combo === "ĐT3" && (
-                <>
-                  <strong>Combo ĐT3 bao gồm:</strong>
-                  <ul className="list-disc ml-5 mt-1">
-                    <li>1 đèn thiền Mực Trà và Thi (tuỳ chọn cấu hình)</li>
-                    <li>1 gói trà thảo dược Sơn Động</li>
-                    <li>1 Tranh "Hiểu và Thương" (khung gỗ pơmu 23x23x2cm)</li>
-                    <li>1 Hộp gỗ quà tặng cao cấp (30x26x22cm)</li>
-                  </ul>
-                </>
-              )}
-            </div>
-          )}
-        </div>
-
-        {/* Size */}
-        <div>
-          <label className="block text-sm font-medium text-brand-brown mb-2 font-serif">Kích thước</label>
-          <div className="grid grid-cols-2 gap-2">
-            {["Nhỏ (15x15x18cm)", "Lớn (18x18x25cm)"].map((opt) => (
-              <button
-                key={opt}
-                onClick={() => setSize(opt)}
-                className={`py-2 px-3 border rounded text-sm transition-colors ${
-                  size === opt 
-                    ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium" 
-                    : "border-gray-200 text-gray-600 hover:border-brand-yellow"
-                }`}
-              >
-                {opt}
+                {combo === opt && <motion.div layoutId="combo-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
+                <span className="relative z-10">{opt}</span>
               </button>
             ))}
           </div>
@@ -136,65 +105,93 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
 
         {/* Motif */}
         <div>
-          <label className="block text-sm font-medium text-brand-brown mb-2 font-serif">Họa tiết tranh vẽ</label>
+          <label className="block text-sm font-medium text-brand-brown mb-3 font-serif uppercase tracking-wider">2. Họa tiết tranh</label>
           <div className="grid grid-cols-1 gap-2">
-            {["Đá và hoa + chữ Tâm An", "Hoa sen thủy mặc", "Thủy mặc tre trúc", "Hoa sen thủy mặc + chữ Nẻo về sen nở (chỉ đèn lớn)"].map((opt) => {
-              const isDisabled = size === "Nhỏ (15x15x18cm)" && opt.includes("chỉ đèn lớn");
+            {["Đá và hoa + chữ Tâm An", "Hoa sen thủy mặc", "Thủy mặc tre trúc", "Hoa sen thủy mặc + chữ Nẻo về sen nở"].map((opt) => {
+              const isDisabled = size === "Nhỏ (15x15x18cm)" && opt.includes("Nẻo về sen nở");
               return (
                 <button
                   key={opt}
                   onClick={() => !isDisabled && setMotif(opt)}
                   disabled={isDisabled}
-                  className={`py-2 px-4 border rounded text-sm text-left transition-colors ${
-                    isDisabled ? "opacity-50 cursor-not-allowed bg-gray-50 border-gray-100" :
+                  className={`relative py-3 px-4 border rounded-lg text-sm text-left transition-all duration-300 ${
+                    isDisabled ? "opacity-40 cursor-not-allowed bg-gray-50 border-gray-100" :
                     motif === opt 
-                      ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium" 
-                      : "border-gray-200 text-gray-600 hover:border-brand-yellow"
+                      ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium shadow-sm" 
+                      : "border-gray-200 text-gray-600 hover:border-brand-yellow/50 hover:bg-brand-paper"
                   }`}
                 >
-                  {opt}
+                  {motif === opt && <motion.div layoutId="motif-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
+                  <span className="relative z-10 flex items-center justify-between">
+                    {opt}
+                    {motif === opt && <Check size={16} className="text-brand-terracotta" />}
+                  </span>
                 </button>
               );
             })}
           </div>
         </div>
 
-        {/* Wood */}
-        <div className="grid grid-cols-2 gap-4">
+        {/* Details Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Wood */}
           <div>
-            <label className="block text-sm font-medium text-brand-brown mb-2 font-serif">Loại đế gỗ</label>
-            <div className="grid grid-cols-1 gap-2">
-              {["Gỗ me tây", "Gỗ pơmu"].map((opt) => (
+            <label className="block text-sm font-medium text-brand-brown mb-3 font-serif uppercase tracking-wider">3. Chất liệu đế</label>
+            <div className="grid grid-cols-2 gap-2">
+              {["Gỗ pơmu", "Gỗ me tây"].map((opt) => (
                 <button
                   key={opt}
                   onClick={() => setWood(opt)}
-                  className={`py-2 px-3 border rounded text-sm transition-colors ${
+                  className={`relative py-3 px-3 border rounded-lg text-sm transition-all duration-300 ${
                     wood === opt 
                       ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium" 
-                      : "border-gray-200 text-gray-600 hover:border-brand-yellow"
+                      : "border-gray-200 text-gray-500 hover:border-brand-yellow/50"
                   }`}
                 >
-                  {opt}
+                  {wood === opt && <motion.div layoutId="wood-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
+                  <span className="relative z-10">{opt}</span>
                 </button>
               ))}
             </div>
           </div>
           
-          {/* Light */}
+          {/* Size */}
           <div>
-            <label className="block text-sm font-medium text-brand-brown mb-2 font-serif">Ánh sáng</label>
+            <label className="block text-sm font-medium text-brand-brown mb-3 font-serif uppercase tracking-wider">4. Kích thước</label>
             <div className="grid grid-cols-1 gap-2">
-              {["Đèn LED", "Nến tealight"].map((opt) => (
+              {["Nhỏ (15x15x18cm)", "Lớn (18x18x25cm)"].map((opt) => (
+                <button
+                  key={opt}
+                  onClick={() => setSize(opt)}
+                  className={`relative py-3 px-3 border rounded-lg text-sm transition-all duration-300 ${
+                    size === opt 
+                      ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium" 
+                      : "border-gray-200 text-gray-500 hover:border-brand-yellow/50"
+                  }`}
+                >
+                  {size === opt && <motion.div layoutId="size-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
+                  <span className="relative z-10">{opt}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Light */}
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium text-brand-brown mb-3 font-serif uppercase tracking-wider">5. Ánh sáng</label>
+            <div className="grid grid-cols-2 gap-2">
+              {["LED", "Nến tealight"].map((opt) => (
                 <button
                   key={opt}
                   onClick={() => setLight(opt)}
-                  className={`py-2 px-3 border rounded text-sm transition-colors ${
+                  className={`relative py-3 px-3 border rounded-lg text-sm transition-all duration-300 ${
                     light === opt 
                       ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium" 
-                      : "border-gray-200 text-gray-600 hover:border-brand-yellow"
+                      : "border-gray-200 text-gray-500 hover:border-brand-yellow/50"
                   }`}
                 >
-                  {opt}
+                  {light === opt && <motion.div layoutId="light-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
+                  <span className="relative z-10">{opt}</span>
                 </button>
               ))}
             </div>
@@ -202,43 +199,26 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
         </div>
       </div>
 
-      <div className="flex items-center gap-4 mb-8">
-        <div className="flex items-center border border-gray-300 rounded">
+      {/* Add to Cart */}
+      <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
+        <div className="flex items-center justify-between border border-brand-brown/20 rounded-lg w-full sm:w-32 bg-white">
           <button 
-            className="px-4 py-3 text-gray-600 hover:bg-gray-100 transition-colors"
+            className="px-4 py-4 text-brand-brown hover:bg-brand-paper transition-colors rounded-l-lg"
             onClick={() => setQuantity(Math.max(1, quantity - 1))}
           >-</button>
-          <span className="w-12 text-center font-medium">{quantity}</span>
+          <span className="w-8 text-center font-medium text-brand-brown">{quantity}</span>
           <button 
-            className="px-4 py-3 text-gray-600 hover:bg-gray-100 transition-colors"
+            className="px-4 py-4 text-brand-brown hover:bg-brand-paper transition-colors rounded-r-lg"
             onClick={() => setQuantity(quantity + 1)}
           >+</button>
         </div>
         <button 
           onClick={handleAddToCart}
-          className="flex-1 bg-brand-brown hover:bg-brand-ink text-brand-yellow font-medium py-3 px-6 rounded transition-colors flex items-center justify-center gap-2"
+          className="flex-1 w-full bg-brand-brown hover:bg-brand-ink text-brand-yellow font-medium py-4 px-6 rounded-lg transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
         >
           <ShoppingBag size={20} />
-          THÊM VÀO GIỎ HÀNG
+          <span className="tracking-widest uppercase">Thêm Vào Giỏ</span>
         </button>
-      </div>
-
-      <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-gray-200 pt-8">
-        <div className="flex flex-col items-center text-center p-4">
-          <ShieldCheck className="text-brand-yellow mb-2" size={24} />
-          <h4 className="font-medium text-brand-brown mb-1 text-sm font-serif">Cam Kết Chất Lượng</h4>
-          <p className="text-xs text-brand-ink/60">Từ Quỹ Vicaris</p>
-        </div>
-        <div className="flex flex-col items-center text-center p-4">
-          <Truck className="text-brand-yellow mb-2" size={24} />
-          <h4 className="font-medium text-brand-brown mb-1 text-sm font-serif">Giao Hàng Miễn Phí</h4>
-          <p className="text-xs text-brand-ink/60">Cho đơn từ 699k</p>
-        </div>
-        <div className="flex flex-col items-center text-center p-4">
-          <RotateCcw className="text-brand-yellow mb-2" size={24} />
-          <h4 className="font-medium text-brand-brown mb-1 text-sm font-serif">Hỗ Trợ Giáo Dục</h4>
-          <p className="text-xs text-brand-ink/60">100% lợi nhuận gây quỹ</p>
-        </div>
       </div>
     </div>
   );

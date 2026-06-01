@@ -33,17 +33,17 @@ export async function getProducts(): Promise<ProductData[]> {
     
     if (data && data.length > 0) {
       // Map Supabase schema to our frontend ProductData interface
-      return data.map((item: any) => ({
+      return data.map((item) => ({
         id: item.id,
         slug: item.slug,
         name: item.name,
         price: Number(item.price),
         image: item.image_url || "/images/products/placeholder.png",
         images: item.images || [],
-        category: item.categories?.name || "Sản phẩm",
+        category: (item.categories as any)?.name || "Sản phẩm",
         description: item.description || "",
         features: item.features || [],
-        isCombo: item.name.toLowerCase().includes("combo"),
+        isCombo: (item.name as string).toLowerCase().includes("combo"),
       }));
     }
     
@@ -83,18 +83,18 @@ export async function getProductBySlug(slug: string): Promise<ProductData | null
     if (error) throw error;
 
     if (data) {
-      const anyData = data as any;
+      const itemData = data;
       return {
-        id: anyData.id,
-        slug: anyData.slug,
-        name: anyData.name,
-        price: Number(anyData.price),
-        image: anyData.image_url || "/images/products/placeholder.png",
-        images: anyData.images || [],
-        category: anyData.categories?.name || "Sản phẩm",
-        description: anyData.description || "",
-        features: anyData.features || [],
-        isCombo: anyData.name.toLowerCase().includes("combo"),
+        id: itemData.id,
+        slug: itemData.slug,
+        name: itemData.name,
+        price: Number(itemData.price),
+        image: itemData.image_url || "/images/products/placeholder.png",
+        images: itemData.images || [],
+        category: (itemData.categories as any)?.name || "Sản phẩm",
+        description: itemData.description || "",
+        features: itemData.features || [],
+        isCombo: (itemData.name as string).toLowerCase().includes("combo"),
       };
     }
 
@@ -132,17 +132,17 @@ export async function getFeaturedProducts(): Promise<ProductData[]> {
     if (error) throw error;
 
     if (data && data.length > 0) {
-      return data.map((item: any) => ({
+      return data.map((item) => ({
         id: item.id,
         slug: item.slug,
         name: item.name,
         price: Number(item.price),
         image: item.image_url || "/images/products/placeholder.png",
         images: item.images || [],
-        category: item.categories?.name || "Sản phẩm",
+        category: (item.categories as any)?.name || "Sản phẩm",
         description: item.description || "",
         features: item.features || [],
-        isCombo: item.name.toLowerCase().includes("combo"),
+        isCombo: (item.name as string).toLowerCase().includes("combo"),
       }));
     }
 

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { 
   LayoutDashboard, Package, Folders, ShoppingCart, 
-  Settings, LogOut, Eye, EyeOff, Search, Bell, User, Menu, X, Store
+  Settings, LogOut, Eye, EyeOff, Search, Bell, User, Menu, Store
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -32,6 +32,7 @@ export default function AdminLayout({
   const pathname = usePathname();
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMounted(true);
     const auth = localStorage.getItem("adminAuth");
     if (auth === "true") {
@@ -198,13 +199,13 @@ export default function AdminLayout({
         </nav>
         
         <div className="p-6 border-t border-[#EAE0D5]/50 bg-white space-y-2">
-          <a 
+          <Link 
             href="/"
             className="flex items-center w-full px-4 py-3 text-[#7A7067] hover:bg-[#F5EFE6] hover:text-[#5C4D43] rounded-xl font-medium transition-colors"
           >
             <Store size={20} className="mr-3 opacity-80" strokeWidth={2} />
             Về Cửa Hàng
-          </a>
+          </Link>
           <button 
             onClick={handleLogout}
             className="flex items-center w-full px-4 py-3 text-[#D9534F] hover:bg-[#FDFBF7] rounded-xl font-medium transition-colors"

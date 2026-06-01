@@ -52,7 +52,7 @@ async function seed() {
 
     // 2. Insert Products
     for (const p of products) {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('products')
         .upsert({
           slug: p.slug,

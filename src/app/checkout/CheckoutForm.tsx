@@ -40,7 +40,7 @@ export default function CheckoutForm() {
     }
   });
 
-  const onSubmit = async (data: CheckoutFormValues) => {
+  const onSubmit = async (_data: CheckoutFormValues) => {
     if (items.length === 0) {
       toast.error("Giỏ hàng của bạn đang trống");
       return;

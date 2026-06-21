@@ -7,12 +7,12 @@ import { ZoomIn, X } from "lucide-react";
 
 export default function ProductMasonry() {
   const images = [
-    "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1511424187101-2aaa60069337?q=80&w=800&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=800&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1615529182904-14819c35db37?q=80&w=800&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=800&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1513258525046-24e64f891b65?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=70&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1511424187101-2aaa60069337?q=70&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=70&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1615529182904-14819c35db37?q=70&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=70&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1513258525046-24e64f891b65?q=70&w=600&auto=format&fit=crop",
   ];
 
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
@@ -35,8 +35,9 @@ export default function ProductMasonry() {
               <Image 
                 src={src} 
                 alt={`Gallery image ${idx + 1}`} 
-                width={800} 
-                height={idx % 2 === 0 ? 1000 : 800} 
+                width={600} 
+                height={idx % 2 === 0 ? 750 : 600} 
+                loading="lazy"
                 className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-brand-brown/0 group-hover:bg-brand-brown/20 transition-colors duration-300 flex items-center justify-center">

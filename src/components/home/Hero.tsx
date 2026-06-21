@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative h-[calc(100vh-72px)] md:h-[calc(100vh-80px)] min-h-[600px] w-full flex items-center justify-center overflow-hidden bg-brand-brown">
+    <section className="relative h-[calc(100vh-72px)] md:h-[calc(100vh-80px)] min-h-[650px] md:min-h-[750px] w-full flex items-center justify-center overflow-hidden bg-brand-brown">
       {/* Background Image / Overlay */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 mix-blend-overlay"
@@ -14,7 +14,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-brand-brown/90" />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center">
+      <div className="relative z-20 text-center px-4 max-w-4xl mx-auto flex flex-col items-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -38,19 +38,19 @@ export default function Hero() {
             >
               KHÁM PHÁ NGAY
             </Link>
-            <Link 
+            <a 
               href="#cau-chuyen" 
               className="px-8 py-4 bg-transparent text-brand-beige font-medium tracking-wide border border-brand-beige/30 hover:border-brand-beige hover:bg-brand-beige/10 transition-all duration-300"
             >
               TÌM HIỂU THÊM
-            </Link>
+            </a>
           </div>
         </motion.div>
       </div>
 
       {/* Scroll indicator */}
       <motion.div 
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center text-brand-beige/60"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center text-brand-beige/60 z-10"
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
       >

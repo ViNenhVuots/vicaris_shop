@@ -14,6 +14,9 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     background-color: var(--color-brand-beige);
     color: var(--color-brand-ink);

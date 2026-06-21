@@ -5,9 +5,17 @@ import { useCartStore } from "@/store/cartStore";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 export default function CartDrawer() {
+  const [isHydrated, setIsHydrated] = useState(false);
   const { isOpen, toggleCart, items, updateQuantity, removeItem } = useCartStore();
+
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
+  if (!isHydrated) return null;
 
   const total = items.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
 

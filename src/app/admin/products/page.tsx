@@ -1,4 +1,5 @@
 import { Package, Plus } from "lucide-react";
+import Link from "next/link";
 
 export const metadata = {
   title: "Quản lý sản phẩm | Admin",
@@ -9,10 +10,13 @@ export default function AdminProductsPage() {
     <div>
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-gray-900">Quản lý Sản phẩm</h1>
-        <button className="bg-brand-brown hover:bg-brand-brown/90 text-white px-4 py-2 rounded-md flex items-center gap-2 text-sm font-medium transition-colors">
+        <Link 
+          href="/admin/products/new"
+          className="bg-brand-brown hover:bg-brand-brown/90 text-white px-4 py-2 rounded-md flex items-center gap-2 text-sm font-medium transition-colors"
+        >
           <Plus size={16} />
           Thêm sản phẩm
-        </button>
+        </Link>
       </div>
 
       <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-12 text-center flex flex-col items-center justify-center min-h-[400px]">

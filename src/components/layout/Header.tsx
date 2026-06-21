@@ -5,7 +5,7 @@ import { Search, ShoppingBag, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCartStore } from "@/store/cartStore";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const navLinks = [
   { name: "Sản phẩm", href: "/products" },
@@ -16,13 +16,26 @@ const navLinks = [
 
 export default function Header() {
   const pathname = usePathname();
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/products?search=${encodeURIComponent(searchQuery.trim())}`);
+      setIsSearchOpen(false);
+      setSearchQuery("");
+    }
+  };
   const cartItems = useCartStore((state) => state.items);
-  const cartItemCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   const toggleCart = useCartStore((state) => state.toggleCart);
 
   useEffect(() => {
+    setIsHydrated(true);
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
@@ -62,7 +75,7 @@ export default function Header() {
                 <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/>
               </svg>
               <span className="text-xl md:text-2xl font-serif font-extrabold tracking-widest text-brand-brown uppercase">
-                Đèn Thiền
+                MỰC TRÀ VÀ THI
               </span>
             </Link>
           </div>
@@ -91,13 +104,36 @@ export default function Header() {
           </nav>
 
           {/* RIGHT: Actions */}
-          <div className="flex-1 flex items-center justify-end space-x-2 sm:space-x-4">
-            <button 
-              className="p-2 text-brand-brown hover:bg-brand-brown/5 rounded-full transition-colors flex items-center justify-center group"
-              aria-label="Tìm kiếm"
-            >
-              <Search size={22} className="group-hover:scale-110 transition-transform" />
-            </button>
+          <div className="flex-1 flex items-center justify-end space-x-2 sm:space-x-4 relative">
+            <div className="relative flex items-center">
+              <AnimatePresence>
+                {isSearchOpen && (
+                  <motion.form 
+                    initial={{ width: 0, opacity: 0 }}
+                    animate={{ width: "200px", opacity: 1 }}
+                    exit={{ width: 0, opacity: 0 }}
+                    className="absolute right-10 overflow-hidden"
+                    onSubmit={handleSearchSubmit}
+                  >
+                    <input
+                      type="text"
+                      placeholder="Tìm kiếm..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-full bg-brand-paper/80 border border-brand-brown/20 px-4 py-1.5 rounded-full text-sm font-serif focus:outline-none focus:border-brand-yellow placeholder:text-brand-brown/40 text-brand-brown shadow-sm"
+                      autoFocus
+                    />
+                  </motion.form>
+                )}
+              </AnimatePresence>
+              <button 
+                className="p-2 text-brand-brown hover:bg-brand-brown/5 rounded-full transition-colors flex items-center justify-center group relative z-10"
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
+                aria-label="Tìm kiếm"
+              >
+                {isSearchOpen ? <X size={22} className="group-hover:scale-110 transition-transform" /> : <Search size={22} className="group-hover:scale-110 transition-transform" />}
+              </button>
+            </div>
             
             <button 
               className="p-2 text-brand-brown hover:bg-brand-brown/5 rounded-full transition-colors relative flex items-center justify-center group"
@@ -106,14 +142,14 @@ export default function Header() {
             >
               <ShoppingBag size={22} className="group-hover:scale-110 transition-transform" />
               <AnimatePresence>
-                {cartItemCount > 0 && (
+                {isHydrated && cartItems.reduce((acc, item) => acc + item.quantity, 0) > 0 && (
                   <motion.span 
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     exit={{ scale: 0 }}
                     className="absolute top-1 right-0.5 bg-brand-terracotta text-brand-beige text-[10px] font-bold min-w-[18px] h-[18px] px-1 rounded-full flex items-center justify-center shadow-sm"
                   >
-                    {cartItemCount}
+                    {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
                   </motion.span>
                 )}
               </AnimatePresence>
@@ -147,7 +183,7 @@ export default function Header() {
                     <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/>
                   </svg>
                   <span className="text-xl font-serif font-extrabold uppercase tracking-widest text-brand-brown">
-                    Đèn Thiền
+                    MỰC TRÀ VÀ THI
                   </span>
                 </div>
                 <button

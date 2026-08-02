@@ -2,11 +2,8 @@
 
 import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
-import { usePathname } from "next/navigation";
 
 export default function Footer() {
-  const pathname = usePathname();
-  if (pathname?.startsWith("/admin")) return null;
   return (
     <footer className="bg-brand-brown text-brand-beige py-12 md:py-16">
       <div className="container mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -34,7 +31,6 @@ export default function Footer() {
             <li><Link href="/about-project" className="hover:text-brand-yellow transition-colors">Giới thiệu dự án</Link></li>
             <li><Link href="/brand-story" className="hover:text-brand-yellow transition-colors">Câu chuyện thương hiệu</Link></li>
             <li><Link href="/contact" className="hover:text-brand-yellow transition-colors">Liên hệ</Link></li>
-            <li><Link href="/admin" className="hover:text-brand-yellow transition-colors">Trang Quản trị viên</Link></li>
           </ul>
         </div>
 

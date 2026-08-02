@@ -56,20 +56,22 @@ export default function ProductVideo() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Intro Video */}
           <div className="space-y-4">
-            <h3 className="text-xl font-serif font-bold text-brand-brown">Câu chuyện Ánh sáng</h3>
+            <h3 className="text-xl font-serif font-bold text-brand-brown">Link youtube giới thiệu</h3>
             <LazyIframe 
-              src="https://player.vimeo.com/video/403759363?h=8376d54030&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0" 
-              title="Câu chuyện ánh sáng"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+              title="Youtube giới thiệu (Đang cập nhật)"
             />
+            <p className="text-sm text-brand-ink/50 italic text-center">Video đang cập nhật...</p>
           </div>
           
           {/* Assembly Video */}
           <div className="space-y-4">
-            <h3 className="text-xl font-serif font-bold text-brand-brown">Hướng dẫn tháo lắp</h3>
+            <h3 className="text-xl font-serif font-bold text-brand-brown">Link youtube hướng dẫn thắt nút đèn thiền</h3>
             <LazyIframe 
-              src="https://player.vimeo.com/video/390978918?h=abf9d14f48&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0" 
-              title="Hướng dẫn tháo lắp"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+              title="Hướng dẫn thắt nút đèn thiền (Đang cập nhật)"
             />
+            <p className="text-sm text-brand-ink/50 italic text-center">Video đang cập nhật...</p>
           </div>
         </div>
       </div>

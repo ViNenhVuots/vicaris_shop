@@ -46,7 +46,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
       </div>
 
       {/* Main Image */}
-      <div className="relative aspect-[4/5] md:aspect-auto md:h-[600px] w-full rounded-2xl overflow-hidden bg-white/50 border border-brand-brown/5 group">
+      <div className="relative w-full rounded-2xl overflow-hidden bg-[#e8e4db] border border-brand-brown/5 group flex items-center justify-center min-h-[400px]">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
@@ -54,15 +54,16 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.05 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute inset-0 cursor-zoom-in"
+            className="w-full h-full flex items-center justify-center cursor-zoom-in"
             onClick={() => setIsZoomed(true)}
           >
             <Image 
               src={images[currentIndex]} 
               alt={`${productName} ${currentIndex + 1}`} 
-              fill 
+              width={1200}
+              height={1200}
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
+              className="w-full h-auto object-contain max-h-[80vh]"
               priority={currentIndex === 0}
             />
           </motion.div>

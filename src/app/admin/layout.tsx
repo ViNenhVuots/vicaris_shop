@@ -84,7 +84,7 @@ export default function AdminLayout({
         >
           <div className="text-center mb-10">
             <h1 className="text-2xl font-serif font-bold tracking-[0.25em] text-[#5C4D43]">
-              ĐÈN THIỀN
+              MỰC TRÀ VÀ THI
             </h1>
             <p className="text-sm text-[#A89F91] mt-2 font-medium">Hệ thống quản trị nội bộ</p>
           </div>
@@ -167,7 +167,7 @@ export default function AdminLayout({
       `}>
         <div className="h-20 flex items-center px-8 border-b border-[#EAE0D5]/50">
           <h2 className="text-xl font-serif font-bold tracking-[0.2em] text-[#5C4D43]">
-            ĐÈN THIỀN
+            MỰC TRÀ VÀ THI
           </h2>
         </div>
         

@@ -22,7 +22,7 @@ const stats = [
   },
   { 
     title: "Sản phẩm", 
-    value: "120", 
+    value: "1", 
     subtitle: "Đang hoạt động", 
     icon: Package,
     color: "text-[#C4642D]",

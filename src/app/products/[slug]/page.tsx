@@ -11,22 +11,9 @@ import { notFound } from "next/navigation";
 const ProductStory = dynamic(() => import("@/components/product/ProductStory"), {
   loading: () => <SectionSkeleton />,
 });
-const ProductMaterials = dynamic(() => import("@/components/product/ProductMaterials"), {
-  loading: () => <SectionSkeleton />,
-});
-const ProductSpecs = dynamic(() => import("@/components/product/ProductSpecs"), {
-  loading: () => <SectionSkeleton />,
-});
-const ProductMasonry = dynamic(() => import("@/components/product/ProductMasonry"), {
-  loading: () => <SectionSkeleton />,
-});
 const ProductVideo = dynamic(() => import("@/components/product/ProductVideo"), {
   loading: () => <SectionSkeleton />,
 });
-const ProductCTA = dynamic(() => import("@/components/product/ProductCTA"), {
-  loading: () => <SectionSkeleton />,
-});
-const ProductRelated = dynamic(() => import("@/components/product/ProductRelated"));
 
 function SectionSkeleton() {
   return (
@@ -119,39 +106,14 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
 
-      {/* Sections 3 & 4: Introduction and Storytelling */}
+      {/* Sections 3-9: Introduction and Storytelling */}
       <Suspense fallback={<SectionSkeleton />}>
         <ProductStory />
       </Suspense>
 
-      {/* Section 5: Materials */}
-      <Suspense fallback={<SectionSkeleton />}>
-        <ProductMaterials />
-      </Suspense>
-
-      {/* Section 6: Technical Specs */}
-      <Suspense fallback={<SectionSkeleton />}>
-        <ProductSpecs />
-      </Suspense>
-
-      {/* Section 7: Masonry Gallery */}
-      <Suspense fallback={<SectionSkeleton />}>
-        <ProductMasonry />
-      </Suspense>
-
-      {/* Section 8: Video */}
+      {/* Section 10: Video */}
       <Suspense fallback={<SectionSkeleton />}>
         <ProductVideo />
-      </Suspense>
-
-      {/* Section 9: CTA */}
-      <Suspense fallback={<SectionSkeleton />}>
-        <ProductCTA />
-      </Suspense>
-
-      {/* Section 10: Related Products */}
-      <Suspense fallback={<SectionSkeleton />}>
-        <ProductRelated />
       </Suspense>
     </main>
   );

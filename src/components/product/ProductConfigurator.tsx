@@ -52,10 +52,9 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
   return (
     <div className="flex flex-col gap-8">
       {/* Short Description */}
-      <div className="prose prose-brand font-serif text-brand-ink/80 text-lg leading-relaxed">
+      <div className="prose prose-brand font-serif text-brand-ink/80 text-lg leading-relaxed text-justify">
         <p>
-          Một sáng tác đề cao nét thiền từ chất liệu và ánh sáng mộc mạc.<br/>
-          Với hai lựa chọn LED hoặc nến tealight, chiếc đèn mang đến sự tĩnh lặng và thi vị cho không gian sống.
+          Đèn thiền Mực, trà và thi là một sáng tác đề cao nét thiền từ chất liệu và ánh sáng mộc mạc. Với 2 lựa chọn ánh sáng đèn LED hoặc nến tealight, sản phẩm phù hợp với bất cứ ai muốn thưởng thức sự mộc mạc và thi vị, hoàn hảo cho cả không gian thưởng trà, nghỉ ngơi, làm việc và thờ phụng. Sự kết hợp thủ công giữa truyền thống và hiện đại để định hình đầy tinh tế, đèn thiền Mực, trà và thi chính là một món quà cao cấp và ý nghĩa dành tặng những ai yêu thích sự lắng sâu và xúc chạm với di sản văn hóa Việt.
         </p>
       </div>
 
@@ -67,15 +66,7 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
         <div className="flex items-center gap-2"><CheckCircle2 className="text-brand-yellow" size={18} /> <span>Quà tặng ý nghĩa</span></div>
       </div>
 
-      {/* Price */}
-      <div className="py-4 border-y border-brand-brown/10">
-        <div className="text-4xl font-bold text-brand-terracotta font-serif">
-          {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price)}
-        </div>
-        <div className="mt-2 text-sm text-brand-ink/60 flex items-center gap-2">
-          <Truck size={16} /> Miễn phí vận chuyển cho đơn từ 699.000đ
-        </div>
-      </div>
+      {/* (Price moved to bottom as Row 7) */}
 
       {/* Options */}
       <div className="space-y-6">
@@ -199,26 +190,64 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
         </div>
       </div>
 
-      {/* Add to Cart */}
-      <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
-        <div className="flex items-center justify-between border border-brand-brown/20 rounded-lg w-full sm:w-32 bg-white">
-          <button 
-            className="px-4 py-4 text-brand-brown hover:bg-brand-paper transition-colors rounded-l-lg"
-            onClick={() => setQuantity(Math.max(1, quantity - 1))}
-          >-</button>
-          <span className="w-8 text-center font-medium text-brand-brown">{quantity}</span>
-          <button 
-            className="px-4 py-4 text-brand-brown hover:bg-brand-paper transition-colors rounded-r-lg"
-            onClick={() => setQuantity(quantity + 1)}
-          >+</button>
+      {/* Row 6: Quantity & Row 7: Price & CTA */}
+      <div className="space-y-6 pt-4 border-t border-gray-100">
+        
+        {/* Row 6: Số lượng */}
+        <div>
+          <label className="block text-sm font-medium text-brand-brown mb-3 font-serif uppercase tracking-wider">6. Số lượng</label>
+          <div className="flex items-center justify-between border border-brand-brown/20 rounded-lg w-32 bg-white h-12">
+            <button 
+              className="px-4 h-full text-brand-brown hover:bg-brand-paper transition-colors rounded-l-lg flex items-center justify-center"
+              onClick={() => setQuantity(Math.max(1, quantity - 1))}
+            >-</button>
+            <span className="w-8 text-center font-medium text-brand-brown">{quantity}</span>
+            <button 
+              className="px-4 h-full text-brand-brown hover:bg-brand-paper transition-colors rounded-r-lg flex items-center justify-center"
+              onClick={() => setQuantity(quantity + 1)}
+            >+</button>
+          </div>
         </div>
-        <button 
-          onClick={handleAddToCart}
-          className="flex-1 w-full bg-brand-brown hover:bg-brand-ink text-brand-yellow font-medium py-4 px-6 rounded-lg transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-        >
-          <ShoppingBag size={20} />
-          <span className="tracking-widest uppercase">Thêm Vào Giỏ</span>
-        </button>
+
+        {/* Row 7: Giá nhảy tự động */}
+        <div className="bg-brand-paper/50 p-4 rounded-xl border border-brand-brown/10">
+          <div className="flex items-center justify-between mb-4">
+            <label className="text-sm font-medium text-brand-brown font-serif uppercase tracking-wider">7. Tạm tính</label>
+            <div className="text-3xl font-bold text-brand-terracotta font-serif">
+              {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price * quantity)}
+            </div>
+          </div>
+          <div className="text-sm text-brand-ink/70 flex flex-col gap-2 mb-4">
+            <div className="flex items-center gap-2">
+              <Truck size={16} className="text-brand-brown" /> 
+              <span>Miễn phí vận chuyển cho đơn từ 699k (từ 2 - 5 ngày)</span>
+            </div>
+            <div className="flex items-center gap-2 text-green-600 font-medium">
+              <CheckCircle2 size={16} /> 
+              <span>Còn hàng Giao hàng ngay lập tức</span>
+            </div>
+          </div>
+          
+          {/* Add to Cart / Buy Now CTA */}
+          <div className="flex w-full gap-3 h-12">
+            <button 
+              onClick={handleAddToCart}
+              className="flex-1 bg-[#FBBF24] hover:bg-[#F59E0B] text-brand-brown font-medium px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-sm"
+            >
+              <ShoppingBag size={18} />
+              <span className="tracking-wide">Thêm vào giỏ hàng</span>
+            </button>
+            <button 
+              onClick={() => {
+                handleAddToCart();
+                // You can add router.push('/checkout') here if needed
+              }}
+              className="flex-1 bg-[#1F2937] hover:bg-black text-white font-medium px-4 rounded-lg transition-all duration-300 flex items-center justify-center shadow-sm"
+            >
+              <span className="tracking-wide">Mua ngay</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

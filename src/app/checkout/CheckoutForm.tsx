@@ -40,7 +40,7 @@ export default function CheckoutForm() {
     }
   });
 
-  const onSubmit = async (_data: CheckoutFormValues) => {
+  const onSubmit = async (data: CheckoutFormValues) => {
     if (items.length === 0) {
       toast.error("Giỏ hàng của bạn đang trống");
       return;
@@ -48,13 +48,52 @@ export default function CheckoutForm() {
 
     setIsSubmitting(true);
     
-    // Fake API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    clearCart();
-    toast.success("Đặt hàng thành công!");
-    router.push("/checkout/success");
+    try {
+      // Prepare order details
+      const orderDetails = items.map(
+        (item) => `${item.name} (${item.size} - ${item.combo} - ${item.motif}) x ${item.quantity}`
+      ).join(" | ");
+
+      const totalAmount = items.reduce((total, item) => total + item.price * item.quantity, 0);
+
+      const payload = {
+        fullName: data.fullName,
+        email: data.email,
+        phone: data.phone,
+        address: `${data.address}, ${data.ward}, ${data.district}, ${data.city}`,
+        notes: data.notes || "",
+        paymentMethod: data.paymentMethod,
+        orderDetails: orderDetails,
+        totalAmount: totalAmount,
+        date: new Date().toLocaleString("vi-VN", { timeZone: "Asia/Ho_Chi_Minh" })
+      };
+
+      const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL;
+      
+      if (scriptUrl) {
+        await fetch(scriptUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload)
+        });
+      } else {
+        console.warn("Google Script URL is not configured. Order simulated.");
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+      }
+
+      setIsSubmitting(false);
+      clearCart();
+      toast.success("Đặt hàng thành công!");
+      router.push("/checkout/success");
+      
+    } catch (error) {
+      console.error(error);
+      setIsSubmitting(false);
+      toast.error("Có lỗi xảy ra, vui lòng thử lại sau!");
+    }
   };
 
   return (

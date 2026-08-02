@@ -51,10 +51,10 @@ export default function CheckoutForm() {
     try {
       // Prepare order details
       const orderDetails = items.map(
-        (item) => `${item.name} (${item.size} - ${item.combo} - ${item.motif}) x ${item.quantity}`
-      ).join(" | ");
+        (item) => `${item.product.name} - ${item.product.options} (SL: ${item.quantity})`
+      ).join(" \n ");
 
-      const totalAmount = items.reduce((total, item) => total + item.price * item.quantity, 0);
+      const totalAmount = items.reduce((total, item) => total + item.product.price * item.quantity, 0);
 
       const payload = {
         fullName: data.fullName,

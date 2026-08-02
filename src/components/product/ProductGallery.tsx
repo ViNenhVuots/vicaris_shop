@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
+import { ChevronLeft, ChevronRight, ZoomIn, X } from "lucide-react";
 
 interface ProductGalleryProps {
   images: string[];
@@ -13,6 +14,11 @@ interface ProductGalleryProps {
 export default function ProductGallery({ images, productName }: ProductGalleryProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const nextImage = () => {
     setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
@@ -90,35 +96,47 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
         </div>
       </div>
 
-      {/* Lightbox */}
-      <AnimatePresence>
-        {isZoomed && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-brand-paper/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-12 cursor-zoom-out"
-            onClick={() => setIsZoomed(false)}
-          >
-            <motion.div 
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="relative w-full h-full max-w-5xl max-h-[90vh] rounded-2xl overflow-hidden shadow-2xl"
+      {/* Lightbox using Portal to escape stacking context */}
+      {mounted && createPortal(
+        <AnimatePresence>
+          {isZoomed && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-12 cursor-zoom-out"
+              onClick={() => setIsZoomed(false)}
             >
-              <Image 
-                src={images[currentIndex]} 
-                alt={`${productName} zoomed`} 
-                fill 
-                sizes="100vw"
-                className="object-contain"
-                quality={100}
-              />
+              {/* Close Button */}
+              <button 
+                className="absolute top-6 right-6 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors z-[10000]"
+                onClick={(e) => { e.stopPropagation(); setIsZoomed(false); }}
+              >
+                <X size={24} />
+              </button>
+
+              <motion.div 
+                initial={{ scale: 0.9, y: 20 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.9, y: 20 }}
+                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                className="relative w-full h-full max-w-5xl max-h-[90vh] rounded-2xl overflow-hidden shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Image 
+                  src={images[currentIndex]} 
+                  alt={`${productName} zoomed`} 
+                  fill 
+                  sizes="100vw"
+                  className="object-contain"
+                  quality={100}
+                />
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </div>
   );
 }

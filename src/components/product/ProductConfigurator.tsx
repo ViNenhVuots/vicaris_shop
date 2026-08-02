@@ -1,11 +1,17 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { useCartStore } from "@/store/cartStore";
 import { ShoppingBag, ShieldCheck, Truck, Leaf, Gift, Check, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 import { ProductData } from "@/data/products";
 import { motion } from "framer-motion";
+
+import imgTaman from "../../../public/images/products/motifs/Da va hoa - chu tam am.jpg";
+import imgSen from "../../../public/images/products/motifs/hoa sen thuy mac.jpg";
+import imgTre from "../../../public/images/products/motifs/thuy mac tre truc.jpg";
+import imgNeo from "../../../public/images/products/motifs/neo ve sen som.jpg";
 
 interface ConfiguratorProps {
   productBase: ProductData;
@@ -27,6 +33,13 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
     : size === "Nhỏ (15x15x18cm)" 
       ? 370000 
       : 450000;
+
+  const motifImages: Record<string, any> = {
+    "Đá và hoa + chữ Tâm An": imgTaman,
+    "Hoa sen thủy mặc": imgSen,
+    "Thủy mặc tre trúc": imgTre,
+    "Hoa sen thủy mặc + chữ Nẻo về sen nở": imgNeo
+  };
 
   useEffect(() => {
     if (size === "Nhỏ (15x15x18cm)" && motif === "Hoa sen thủy mặc + chữ Nẻo về sen nở") {
@@ -121,6 +134,24 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
               );
             })}
           </div>
+          
+          {motifImages[motif] && (
+            <motion.div 
+              key={motif}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              className="mt-4 rounded-xl overflow-hidden shadow-sm border border-brand-brown/10 w-full"
+            >
+              <Image 
+                src={motifImages[motif]}
+                alt={motif}
+                quality={70}
+                className="w-full h-auto"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </motion.div>
+          )}
         </div>
 
         {/* Details Grid */}

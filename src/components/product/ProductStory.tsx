@@ -3,54 +3,71 @@
 import Image from "next/image";
 import { Quote } from "lucide-react";
 
+import img1 from "../../../public/images/products/story/anh1.gif";
+import img2 from "../../../public/images/products/story/anh2.jpg";
+import img3 from "../../../public/images/products/story/anh3.jpg";
+import img4 from "../../../public/images/products/story/anh4.jpg";
+import img5 from "../../../public/images/products/story/anh5.jpg";
+import img6 from "../../../public/images/products/story/anh6.jpg";
+import img7 from "../../../public/images/products/story/anh7.jpg";
+import img8 from "../../../public/images/products/story/anh8.jpg";
+import img9 from "../../../public/images/products/story/anh9.jpg";
+import img10 from "../../../public/images/products/story/anh10.jpg";
+
 export default function ProductStory() {
   const stories = [
     {
       title: "Thắp sáng không gian bằng vẻ đẹp mộc mạc được tạo nên từ những trái tim phụng sự",
       desc: "Thưởng thức sự mộc mạc và thi vị, hoàn hảo cho cả không gian thưởng trà, ngủ nghỉ, bàn làm việc và bàn thờ. Sự kết hợp thủ công giữa truyền thống và hiện đại để định hình đầy tinh tế, đèn thiền Mực, trà và thi chính là một món quà cao cấp và ý nghĩa dành tặng những ai yêu thích sự lắng sâu và xúc chạm với di sản văn hóa Việt.",
-      img: "/images/products/story/anh1.gif"
+      img: img1
     },
     {
       title: "",
       desc: "Một sáng tác mới đến từ Quỹ Bảo trợ giáo dục Vicaris.",
-      img: "/images/products/story/anh2.jpg",
+      img: img2,
       isHighlight: true
     },
     {
       title: "Lên ý tưởng từ một lời động viên của tình huynh đệ",
       desc: "Thầy Tuệ Đạt - điều hành Quỹ nhận được lời động viên từ Sư anh Mãn Pháp về việc sáng tác đèn thiền phát hành gây quỹ để có kinh phí giúp đỡ học sinh, sinh viên khó khăn có thêm cơ hội đến trường. Sau 3 tháng lặng lẽ lên ý tưởng, thử nghiệm và điều chỉnh, khi hoàn thiện, chiếc đèn mang theo sự trọn vẹn, tinh tế và ấm áp nhất khi đến với người hữu duyên.",
-      img: "/images/products/story/anh3.jpg"
+      img: img3
     },
     {
       title: "Hòa hợp chất liệu truyền thống và hiện đại",
       desc: "Thân đèn được khéo léo kết hợp giữa 2 vật liệu là giấy dó và nhựa PET. Sự kết hợp giữa truyền thống nương vào hiện đại để đứng vững. Giấy dó bền dai, mộc mạc, được vẽ tay tranh thủy mặc bằng mực tàu mang theo hơi thở thời gian và tinh thần của nền văn hóa lâu đời; nhựa PET trong suốt, dẻo dai, có khả năng chịu lực, ổn định nhiệt và có thể tái chế.",
-      img: "/images/products/story/anh4.jpg"
+      img: img4
     },
     {
       title: "Tái sinh",
       desc: "Đế đèn được chọn từ gỗ pơmu hoặc gỗ me tây. Gỗ pơmu - một loại gỗ quý được sống lại từ những tấm gỗ trên mái nhà sàn đặc trưng của đồng bào vùng cao phía Bắc, mang hương thơm dịu nhẹ, ấm áp và thanh khiết, mà từ lâu đã là một phần của di sản văn hóa. Gỗ me tây - loại cây du nhập vào Việt Nam trong thời kỳ thuộc địa, khoảng cuối thế kỷ 19 đến đầu thế kỷ 20, gỗ chắc, vân đẹp, ít bị nứt nẻ và mộc mạc.",
-      img: "/images/products/story/anh5.jpg"
+      img: img5
     },
     {
       title: "Đèn xinh trao gửi nụ cười / Gieo hạt hiểu thương, sáng đời trẻ thơ",
       desc: "Không chỉ là một vật phẩm để thắp sáng, đèn thiền còn là một góc nhỏ nghệ thuật cho không gian sống. Chiếc đèn nhỏ xinh mang ánh sáng dịu dàng soi chiếu không gian và góp phần thắp sáng đời trẻ thơ.",
-      img: "/images/products/story/anh6.jpg",
+      img: img6,
       isPoem: true
     },
     {
       title: "Tình thương lan tỏa",
       desc: "Mỗi chiếc đèn được biểu hiện không chỉ đến từ sự khéo léo bởi đôi tay của những người lành nghề Mộc - Giấy - Họa, mà còn từ những trái tim phụng sự đã lân mẫn ghép nối những mảnh tách biệt thành một câu chuyện tử tế, mang theo ước nguyện gieo những hạt giống lành, nuôi dưỡng học sinh, sinh viên yếu thế của các thành viên Quỹ Bảo trợ giáo dục Vicaris. Trân quý và biết ơn!",
-      img: "/images/products/story/anh7.jpg"
+      img: img7
     },
     {
       title: "An toàn và đa dạng lựa chọn",
       desc: "Nến tealight sáp ong cao cấp với độ an toàn tuyệt đối. Đèn LED ánh sáng vàng ấm với cổng USB tiện dụng và dễ di chuyển. Với 2 loại kích thước: Nhỏ (15x15x18cm) và Lớn (18x18x25cm).",
-      img: "/images/products/story/anh8.jpg"
+      img: img8
     },
     {
       title: "Mẫu có sẵn hoặc ý tưởng của bạn?",
       desc: "Họa tiết tranh vẽ: Đá và hoa + chữ Tâm An, Hoa sen thủy mặc, Thủy mặc tre trúc, Hoa sen thủy mặc + chữ Nẻo về sen nở. Hoặc đặt vẽ chiếc đèn theo ý tưởng của riêng bạn?",
-      img: "/images/products/story/anh9.jpg"
+      img: img9
+    },
+    {
+      title: "",
+      desc: "",
+      img: img10,
+      isFullWidthImage: true
     }
   ];
 
@@ -75,6 +92,7 @@ export default function ProductStory() {
                     alt="Highlight" 
                     width={1600}
                     height={900}
+                    quality={70}
                     className="w-full h-auto object-cover"
                     sizes="100vw"
                   />
@@ -88,15 +106,28 @@ export default function ProductStory() {
               )
             }
 
+            if (story.isFullWidthImage) {
+              return (
+                <div key={idx} className="relative rounded-2xl overflow-hidden shadow-xl flex items-center justify-center w-full">
+                  <Image 
+                    src={story.img} 
+                    alt="Price Table" 
+                    quality={70}
+                    className="w-full h-auto"
+                    sizes="100vw"
+                  />
+                </div>
+              )
+            }
+
             return (
               <div key={idx} className={`flex flex-col md:flex-row items-center gap-12 lg:gap-24 ${idx % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
                 <div className="w-full md:w-1/2 relative rounded-2xl overflow-hidden shadow-xl bg-[#e8e4db] min-h-[200px] flex items-center justify-center">
                   <Image 
                     src={story.img} 
                     alt={story.title || 'Hình ảnh sản phẩm'} 
-                    width={800}
-                    height={800}
-                    className="w-full h-auto object-contain hover:scale-105 transition-transform duration-700 relative z-10" 
+                    quality={70}
+                    className="w-full h-auto hover:scale-105 transition-transform duration-700 relative z-10" 
                     sizes="(max-width: 768px) 100vw, 50vw" 
                     onError={(e) => { e.currentTarget.style.opacity = '0' }}
                   />

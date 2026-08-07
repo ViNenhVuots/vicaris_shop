@@ -115,7 +115,7 @@ export default function Header() {
           {/* CENTER: Navigation (Desktop only) */}
           <nav className="hidden md:flex flex-1 items-center justify-center space-x-6 lg:space-x-10" aria-label="Điều hướng chính">
             {NAV_LINKS.map((link) => {
-              const isActive = pathname === link.href || (pathname?.startsWith(link.href) && link.href !== '/');
+              const isActive = pathname === link.href || (pathname?.startsWith(link.href) && (link.href as string) !== '/');
               return (
                 <Link
                   key={link.name}
@@ -240,7 +240,7 @@ export default function Header() {
               
               <nav className="flex flex-col py-4 sm:py-6 px-3 sm:px-4 space-y-1 sm:space-y-2 flex-1 overflow-y-auto" aria-label="Menu di động">
                 {NAV_LINKS.map((link) => {
-                  const isActive = pathname === link.href || (pathname?.startsWith(link.href) && link.href !== '/');
+                  const isActive = pathname === link.href || (pathname?.startsWith(link.href) && (link.href as string) !== '/');
                   return (
                     <Link
                       key={link.name}

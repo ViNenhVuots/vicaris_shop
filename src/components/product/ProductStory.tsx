@@ -58,11 +58,7 @@ export default function ProductStory() {
       desc: "Nến tealight sáp ong cao cấp với độ an toàn tuyệt đối. Đèn LED ánh sáng vàng ấm với cổng USB tiện dụng và dễ di chuyển. Với 2 loại kích thước: Nhỏ (15x15x18cm) và Lớn (18x18x25cm).",
       img: img8
     },
-    {
-      title: "Mẫu có sẵn hoặc ý tưởng của bạn?",
-      desc: "Họa tiết tranh vẽ: Đá và hoa + chữ Tâm An, Hoa sen thủy mặc, Thủy mặc tre trúc, Hoa sen thủy mặc + chữ Nẻo về sen nở. Hoặc đặt vẽ chiếc đèn theo ý tưởng của riêng bạn?",
-      img: img9
-    },
+
     {
       title: "",
       desc: "",

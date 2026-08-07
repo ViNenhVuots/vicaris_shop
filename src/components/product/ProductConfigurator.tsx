@@ -64,19 +64,15 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
 
   return (
     <div className="flex flex-col gap-8">
+      <div className="text-2xl font-bold text-brand-terracotta font-serif mb-2">
+        Giá: 370.000đ - 777.000đ
+      </div>
+
       {/* Short Description */}
       <div className="prose prose-brand font-serif text-brand-ink/80 text-lg leading-relaxed text-justify">
         <p>
           Đèn thiền Mực, trà và thi là một sáng tác đề cao nét thiền từ chất liệu và ánh sáng mộc mạc. Với 2 lựa chọn ánh sáng đèn LED hoặc nến tealight, sản phẩm phù hợp với bất cứ ai muốn thưởng thức sự mộc mạc và thi vị, hoàn hảo cho cả không gian thưởng trà, nghỉ ngơi, làm việc và thờ phụng. Sự kết hợp thủ công giữa truyền thống và hiện đại để định hình đầy tinh tế, đèn thiền Mực, trà và thi chính là một món quà cao cấp và ý nghĩa dành tặng những ai yêu thích sự lắng sâu và xúc chạm với di sản văn hóa Việt.
         </p>
-      </div>
-
-      {/* Badges */}
-      <div className="grid grid-cols-2 gap-3 text-sm font-medium text-brand-brown font-serif">
-        <div className="flex items-center gap-2"><CheckCircle2 className="text-brand-yellow" size={18} /> <span>Handmade</span></div>
-        <div className="flex items-center gap-2"><CheckCircle2 className="text-brand-yellow" size={18} /> <span>Giấy dó thủ công</span></div>
-        <div className="flex items-center gap-2"><CheckCircle2 className="text-brand-yellow" size={18} /> <span>Gỗ tái sinh</span></div>
-        <div className="flex items-center gap-2"><CheckCircle2 className="text-brand-yellow" size={18} /> <span>Quà tặng ý nghĩa</span></div>
       </div>
 
       {/* (Price moved to bottom as Row 7) */}
@@ -158,7 +154,7 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
           <div>
             <label className="block text-sm font-medium text-brand-brown mb-3 font-serif uppercase tracking-wider">3. Chất liệu đế</label>
             <div className="grid grid-cols-2 gap-2">
-              {["Gỗ pơmu", "Gỗ me tây"].map((opt) => (
+              {["Gỗ me tây", "Gỗ pơmu"].map((opt) => (
                 <button
                   key={opt}
                   onClick={() => setWood(opt)}

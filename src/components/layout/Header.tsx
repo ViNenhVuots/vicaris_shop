@@ -110,7 +110,7 @@ export default function Header() {
                 {isSearchOpen && (
                   <motion.form 
                     initial={{ width: 0, opacity: 0 }}
-                    animate={{ width: "200px", opacity: 1 }}
+                    animate={{ width: "min(200px, 50vw)", opacity: 1 }}
                     exit={{ width: 0, opacity: 0 }}
                     className="absolute right-10 overflow-hidden"
                     onSubmit={handleSearchSubmit}

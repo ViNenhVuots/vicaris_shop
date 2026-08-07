@@ -20,6 +20,17 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
     setMounted(true);
   }, []);
 
+  useEffect(() => {
+    if (isZoomed) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isZoomed]);
+
   const nextImage = () => {
     setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
@@ -76,7 +87,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
         </AnimatePresence>
 
         {/* Navigation Arrows */}
-        <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+        <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
           <button 
             onClick={(e) => { e.stopPropagation(); prevImage(); }}
             className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm shadow-md flex items-center justify-center text-brand-brown hover:bg-white hover:scale-110 transition-all pointer-events-auto"
@@ -91,7 +102,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
           </button>
         </div>
         
-        <div className="absolute bottom-4 right-4 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-brand-brown opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-sm">
+        <div className="absolute bottom-4 right-4 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-brand-brown opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-sm">
           <ZoomIn size={18} />
         </div>
       </div>

@@ -28,10 +28,10 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
   const [quantity, setQuantity] = useState(1);
 
   // Derived Price Calculation
-  const price = combo !== "Không" 
-    ? 777000 
-    : size === "Nhỏ (15x15x18cm)" 
-      ? 370000 
+  const price = combo !== "Không"
+    ? 777000
+    : size === "Nhỏ (15x15x18cm)"
+      ? 370000
       : 450000;
 
   const motifImages: Record<string, any> = {
@@ -57,7 +57,7 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
       name: `${productBase.name} (${size})`,
       options: optionsStr,
     };
-    
+
     addItem(cartProduct, quantity);
     toast.success("Đã thêm vào giỏ hàng");
   };
@@ -94,11 +94,10 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
               <button
                 key={opt}
                 onClick={() => setCombo(opt)}
-                className={`relative py-3 px-1 border rounded-lg text-sm transition-all duration-300 font-medium ${
-                  combo === opt 
-                    ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown shadow-sm" 
-                    : "border-gray-200 text-gray-500 hover:border-brand-yellow/50 hover:bg-brand-paper"
-                }`}
+                className={`relative py-3 px-1 border rounded-lg text-sm transition-all duration-300 font-medium ${combo === opt
+                  ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown shadow-sm"
+                  : "border-gray-200 text-gray-500 hover:border-brand-yellow/50 hover:bg-brand-paper"
+                  }`}
               >
                 {combo === opt && <motion.div layoutId="combo-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
                 <span className="relative z-10">{opt}</span>
@@ -118,12 +117,11 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
                   key={opt}
                   onClick={() => !isDisabled && setMotif(opt)}
                   disabled={isDisabled}
-                  className={`relative py-3 px-4 border rounded-lg text-sm text-left transition-all duration-300 ${
-                    isDisabled ? "opacity-40 cursor-not-allowed bg-gray-50 border-gray-100" :
-                    motif === opt 
-                      ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium shadow-sm" 
+                  className={`relative py-3 px-4 border rounded-lg text-sm text-left transition-all duration-300 ${isDisabled ? "opacity-40 cursor-not-allowed bg-gray-50 border-gray-100" :
+                    motif === opt
+                      ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium shadow-sm"
                       : "border-gray-200 text-gray-600 hover:border-brand-yellow/50 hover:bg-brand-paper"
-                  }`}
+                    }`}
                 >
                   {motif === opt && <motion.div layoutId="motif-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
                   <span className="relative z-10 flex items-center justify-between">
@@ -134,16 +132,16 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
               );
             })}
           </div>
-          
+
           {motifImages[motif] && (
-            <motion.div 
+            <motion.div
               key={motif}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
               className="mt-4 rounded-xl overflow-hidden shadow-sm border border-brand-brown/10 w-full"
             >
-              <Image 
+              <Image
                 src={motifImages[motif]}
                 alt={motif}
                 quality={70}
@@ -164,11 +162,10 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
                 <button
                   key={opt}
                   onClick={() => setWood(opt)}
-                  className={`relative py-3 px-3 border rounded-lg text-sm transition-all duration-300 ${
-                    wood === opt 
-                      ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium" 
-                      : "border-gray-200 text-gray-500 hover:border-brand-yellow/50"
-                  }`}
+                  className={`relative py-3 px-3 border rounded-lg text-sm transition-all duration-300 ${wood === opt
+                    ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium"
+                    : "border-gray-200 text-gray-500 hover:border-brand-yellow/50"
+                    }`}
                 >
                   {wood === opt && <motion.div layoutId="wood-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
                   <span className="relative z-10">{opt}</span>
@@ -176,7 +173,7 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
               ))}
             </div>
           </div>
-          
+
           {/* Size */}
           <div>
             <label className="block text-sm font-medium text-brand-brown mb-3 font-serif uppercase tracking-wider">4. Kích thước</label>
@@ -185,11 +182,10 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
                 <button
                   key={opt}
                   onClick={() => setSize(opt)}
-                  className={`relative py-3 px-3 border rounded-lg text-sm transition-all duration-300 ${
-                    size === opt 
-                      ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium" 
-                      : "border-gray-200 text-gray-500 hover:border-brand-yellow/50"
-                  }`}
+                  className={`relative py-3 px-3 border rounded-lg text-sm transition-all duration-300 ${size === opt
+                    ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium"
+                    : "border-gray-200 text-gray-500 hover:border-brand-yellow/50"
+                    }`}
                 >
                   {size === opt && <motion.div layoutId="size-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
                   <span className="relative z-10">{opt}</span>
@@ -206,11 +202,10 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
                 <button
                   key={opt}
                   onClick={() => setLight(opt)}
-                  className={`relative py-3 px-3 border rounded-lg text-sm transition-all duration-300 ${
-                    light === opt 
-                      ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium" 
-                      : "border-gray-200 text-gray-500 hover:border-brand-yellow/50"
-                  }`}
+                  className={`relative py-3 px-3 border rounded-lg text-sm transition-all duration-300 ${light === opt
+                    ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium"
+                    : "border-gray-200 text-gray-500 hover:border-brand-yellow/50"
+                    }`}
                 >
                   {light === opt && <motion.div layoutId="light-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
                   <span className="relative z-10">{opt}</span>
@@ -223,17 +218,17 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
 
       {/* Row 6: Quantity & Row 7: Price & CTA */}
       <div className="space-y-6 pt-4 border-t border-gray-100">
-        
+
         {/* Row 6: Số lượng */}
         <div>
           <label className="block text-sm font-medium text-brand-brown mb-3 font-serif uppercase tracking-wider">6. Số lượng</label>
           <div className="flex items-center justify-between border border-brand-brown/20 rounded-lg w-32 bg-white h-12">
-            <button 
+            <button
               className="px-4 h-full text-brand-brown hover:bg-brand-paper transition-colors rounded-l-lg flex items-center justify-center"
               onClick={() => setQuantity(Math.max(1, quantity - 1))}
             >-</button>
             <span className="w-8 text-center font-medium text-brand-brown">{quantity}</span>
-            <button 
+            <button
               className="px-4 h-full text-brand-brown hover:bg-brand-paper transition-colors rounded-r-lg flex items-center justify-center"
               onClick={() => setQuantity(quantity + 1)}
             >+</button>
@@ -250,30 +245,30 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
           </div>
           <div className="text-sm text-brand-ink/70 flex flex-col gap-2 mb-4">
             <div className="flex items-center gap-2">
-              <Truck size={16} className="text-brand-brown" /> 
+              <Truck size={16} className="text-brand-brown" />
               <span>Miễn phí vận chuyển cho đơn từ 699k (từ 2 - 5 ngày)</span>
             </div>
             <div className="flex items-center gap-2 text-green-600 font-medium">
-              <CheckCircle2 size={16} /> 
+              <CheckCircle2 size={16} />
               <span>Còn hàng Giao hàng ngay lập tức</span>
             </div>
           </div>
-          
+
           {/* Add to Cart / Buy Now CTA */}
-          <div className="flex w-full gap-3 h-12">
-            <button 
+          <div className="flex flex-col sm:flex-row w-full gap-3">
+            <button
               onClick={handleAddToCart}
-              className="flex-1 bg-[#FBBF24] hover:bg-[#F59E0B] text-brand-brown font-medium px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-sm"
+              className="flex-1 h-12 bg-[#FBBF24] hover:bg-[#F59E0B] text-brand-brown font-medium px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-sm"
             >
               <ShoppingBag size={18} />
               <span className="tracking-wide">Thêm vào giỏ hàng</span>
             </button>
-            <button 
+            <button
               onClick={() => {
                 handleAddToCart();
                 // You can add router.push('/checkout') here if needed
               }}
-              className="flex-1 bg-[#1F2937] hover:bg-black text-white font-medium px-4 rounded-lg transition-all duration-300 flex items-center justify-center shadow-sm"
+              className="flex-1 h-12 bg-[#1F2937] hover:bg-black text-white font-medium px-4 rounded-lg transition-all duration-300 flex items-center justify-center shadow-sm"
             >
               <span className="tracking-wide">Mua ngay</span>
             </button>

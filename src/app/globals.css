@@ -16,9 +16,55 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
   }
   body {
     background-color: var(--color-brand-beige);
     color: var(--color-brand-ink);
+    overflow-x: hidden;
+  }
+  /* Ensure no horizontal scroll */
+  #__next, main {
+    overflow-x: hidden;
+  }
+  /* Better focus styles for accessibility */
+  :focus-visible {
+    outline: 2px solid var(--color-brand-yellow);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  /* Smooth scrollbar */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  /* Responsive typography clamp */
+  h1 {
+    font-size: clamp(1.75rem, 4vw + 0.5rem, 3.75rem);
+  }
+  h2 {
+    font-size: clamp(1.5rem, 3vw + 0.5rem, 3rem);
+  }
+}
+
+@layer utilities {
+  /* Skip to content for accessibility */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    z-index: 9999;
+    padding: 1rem 1.5rem;
+    background: var(--color-brand-brown);
+    color: var(--color-brand-yellow);
+    font-weight: 600;
+    transition: top 0.2s;
+  }
+  .skip-link:focus {
+    top: 0;
   }
 }

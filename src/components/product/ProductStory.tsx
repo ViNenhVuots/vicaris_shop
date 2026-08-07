@@ -13,6 +13,8 @@ import img7 from "../../../public/images/products/story/anh7.jpg";
 import img8 from "../../../public/images/products/story/anh8.jpg";
 import img9 from "../../../public/images/products/story/anh9.jpg";
 import img10 from "../../../public/images/products/story/anh10.jpg";
+import img11 from "../../../public/images/products/story/phu-kien-usb.jpg";
+import img12 from "../../../public/images/products/story/phu-kien-nen.jpg";
 
 export default function ProductStory() {
   const stories = [
@@ -58,7 +60,11 @@ export default function ProductStory() {
       desc: "Nến tealight sáp ong cao cấp với độ an toàn tuyệt đối. Đèn LED ánh sáng vàng ấm với cổng USB tiện dụng và dễ di chuyển. Với 2 loại kích thước: Nhỏ (15x15x18cm) và Lớn (18x18x25cm).",
       img: img8
     },
-
+    {
+      isTwoImages: true,
+      imgLeft: img11,
+      imgRight: img12
+    },
     {
       title: "",
       desc: "",
@@ -114,6 +120,31 @@ export default function ProductStory() {
                   />
                 </div>
               )
+            }
+
+            if (story.isTwoImages) {
+              return (
+                <div key={idx} className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+                  <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-square bg-[#e8e4db]">
+                    <Image 
+                      src={story.imgLeft} 
+                      alt="Phụ kiện USB" 
+                      fill
+                      className="object-cover hover:scale-105 transition-transform duration-700"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                  <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-square bg-[#e8e4db]">
+                    <Image 
+                      src={story.imgRight} 
+                      alt="Phụ kiện Nến" 
+                      fill
+                      className="object-cover hover:scale-105 transition-transform duration-700"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                </div>
+              );
             }
 
             return (

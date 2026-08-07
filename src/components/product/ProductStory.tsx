@@ -151,7 +151,7 @@ export default function ProductStory() {
               <div key={idx} className={`flex flex-col md:flex-row items-center gap-12 lg:gap-24 ${idx % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
                 <div className="w-full md:w-1/2 relative rounded-2xl overflow-hidden shadow-xl bg-[#e8e4db] min-h-[200px] flex items-center justify-center">
                   <Image 
-                    src={story.img} 
+                    src={story.img!} 
                     alt={story.title || 'Hình ảnh sản phẩm'} 
                     quality={70}
                     className="w-full h-auto hover:scale-105 transition-transform duration-700 relative z-10" 

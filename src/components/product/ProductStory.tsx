@@ -11,6 +11,7 @@ import img5 from "../../../public/images/products/story/anh5.jpg";
 import img6 from "../../../public/images/products/story/anh6.jpg";
 import img7 from "../../../public/images/products/story/anh7.jpg";
 import img8 from "../../../public/images/products/story/anh8.jpg";
+import img9 from "../../../public/images/products/story/anh9.jpg";
 import img10 from "../../../public/images/products/story/anh10.jpg";
 import img11 from "../../../public/images/products/story/phu-kien-usb.jpg";
 import img12 from "../../../public/images/products/story/phu-kien-nen.jpg";
@@ -69,6 +70,11 @@ const STORIES: StoryItem[] = [
     title: "An toàn và đa dạng lựa chọn",
     desc: "Nến tealight sáp ong cao cấp với độ an toàn tuyệt đối. Đèn LED ánh sáng vàng ấm với cổng USB tiện dụng và dễ di chuyển. Với 2 loại kích thước: Nhỏ (15x15x18cm) và Lớn (18x18x25cm).",
     img: img8,
+  },
+  {
+    title: "Đèn theo ý tưởng của bạn?",
+    desc: "Họa tiết tranh vẽ: Đá và hoa + chữ Tâm An, Hoa sen thủy mặc, Hoa sen rực rỡ, Thủy mặc tre trúc, Hoa sen thủy mặc + chữ Nẻo về sen nở. Hoặc đặt vẽ theo ý tưởng của riêng bạn.",
+    img: img9,
   },
   {
     isTwoImages: true,

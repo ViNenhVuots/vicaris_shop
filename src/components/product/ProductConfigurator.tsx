@@ -17,8 +17,10 @@ const COMBO_OPTIONS = ["Không", "ĐT1", "ĐT2", "ĐT3"] as const;
 const MOTIF_OPTIONS = [
   "Đá và hoa + chữ Tâm An",
   "Hoa sen thủy mặc",
+  "Hoa sen rực rỡ",
   "Thủy mặc tre trúc",
   "Hoa sen thủy mặc + chữ Nẻo về sen nở",
+  "Đèn theo ý tưởng của bạn?",
 ] as const;
 const WOOD_OPTIONS = ["Gỗ me tây", "Gỗ pơmu"] as const;
 const SIZE_OPTIONS = ["Nhỏ (15x15x18cm)", "Lớn (18x18x25cm)"] as const;
@@ -53,9 +55,12 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
   const isSmallSize = size === "Nhỏ (15x15x18cm)";
 
   const price = useMemo(() => {
-    if (combo !== "Không") return COMBO_PRICE;
-    return isSmallSize ? SMALL_PRICE : LARGE_PRICE;
-  }, [combo, isSmallSize]);
+    let currentPrice = combo !== "Không" ? COMBO_PRICE : (isSmallSize ? SMALL_PRICE : LARGE_PRICE);
+    if (motif === "Hoa sen rực rỡ") {
+      currentPrice += 50000;
+    }
+    return currentPrice;
+  }, [combo, isSmallSize, motif]);
 
   const totalPrice = price * quantity;
 
@@ -83,7 +88,7 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
   return (
     <div className="flex flex-col gap-6 sm:gap-8">
       <div className="text-xl sm:text-2xl font-bold text-brand-terracotta font-serif mb-1 sm:mb-2">
-        Giá: {new Intl.NumberFormat('vi-VN').format(SMALL_PRICE)}đ - {new Intl.NumberFormat('vi-VN').format(COMBO_PRICE)}đ
+        Giá: {new Intl.NumberFormat('vi-VN').format(SMALL_PRICE)}đ - {new Intl.NumberFormat('vi-VN').format(COMBO_PRICE + 50000)}đ
       </div>
 
       {/* Short Description */}

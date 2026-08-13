@@ -21,7 +21,7 @@ export default function PrivacyPage() {
     },
     {
       title: "4. Quyền của khách hàng",
-      content: "Bạn có quyền yêu cầu xem, chỉnh sửa hoặc xóa thông tin cá nhân bất kỳ lúc nào bằng cách liên hệ qua email lienhe@vicaris.vn hoặc hotline 090 999 1042.",
+      content: "Bạn có quyền yêu cầu xem, chỉnh sửa hoặc xóa thông tin cá nhân bất kỳ lúc nào bằng cách liên hệ qua email gieohathieuthuong@gmail.com hoặc hotline 036 381 6213.",
     },
     {
       title: "5. Cookie",

@@ -19,7 +19,7 @@ const FAQS = [
   },
   {
     question: "Tôi có thể đặt vẽ họa tiết theo ý riêng không?",
-    answer: "Có! Chúng tôi nhận đặt vẽ theo ý tưởng riêng của bạn. Vui lòng liên hệ trực tiếp qua hotline 090 999 1042 hoặc email lienhe@vicaris.vn để trao đổi chi tiết.",
+    answer: "Có! Chúng tôi nhận đặt vẽ theo ý tưởng riêng của bạn. Vui lòng liên hệ trực tiếp qua hotline 036 381 6213 hoặc email gieohathieuthuong@gmail.com để trao đổi chi tiết.",
   },
   {
     question: "Chính sách vận chuyển như thế nào?",

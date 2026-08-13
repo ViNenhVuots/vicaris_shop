@@ -7,8 +7,8 @@ import { toast } from "sonner";
 
 const CONTACT_INFO = [
   { icon: MapPin, label: "Địa chỉ", value: "Quỹ Bảo trợ giáo dục Vicaris" },
-  { icon: Phone, label: "Điện thoại", value: "090 999 1042" },
-  { icon: Mail, label: "Email", value: "lienhe@vicaris.vn" },
+  { icon: Phone, label: "Điện thoại", value: "036 381 6213" },
+  { icon: Mail, label: "Email", value: "gieohathieuthuong@gmail.com" },
   { icon: Clock, label: "Giờ làm việc", value: "Thứ 2 – Thứ 7: 8:00 – 17:00" },
 ] as const;
 

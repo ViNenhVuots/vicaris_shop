@@ -48,7 +48,7 @@ export default function ReturnsPage() {
               <h2 className="text-xl font-serif font-bold text-brand-brown">Quy trình đổi trả</h2>
             </div>
             <ol className="space-y-3 ml-10 text-brand-ink/80 font-serif list-decimal list-inside">
-              <li>Liên hệ hotline 090 999 1042 hoặc email lienhe@vicaris.vn.</li>
+              <li>Liên hệ hotline 036 381 6213 hoặc email gieohathieuthuong@gmail.com.</li>
               <li>Cung cấp mã đơn hàng, hình ảnh sản phẩm lỗi.</li>
               <li>Nhận xác nhận đổi trả từ bộ phận chăm sóc khách hàng.</li>
               <li>Gửi sản phẩm về địa chỉ được cung cấp (miễn phí ship hoàn).</li>

@@ -64,12 +64,6 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
 
   const totalPrice = price * quantity;
 
-  useEffect(() => {
-    if (isSmallSize && motif.includes("Nẻo về sen nở")) {
-      setMotif("Hoa sen thủy mặc");
-    }
-  }, [isSmallSize, motif]);
-
   const handleAddToCart = useCallback(() => {
     const optionsStr = `Combo: ${combo} | Kích thước: ${size} | Họa tiết: ${motif} | Loại đế: ${wood} | Ánh sáng: ${light}`;
     const cartProduct = {
@@ -130,20 +124,17 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
           <legend className="block text-sm font-medium text-brand-brown mb-2 sm:mb-3 font-serif uppercase tracking-wider">2. Họa tiết tranh</legend>
           <div className="grid grid-cols-1 gap-2">
             {MOTIF_OPTIONS.map((opt) => {
-              const isDisabled = isSmallSize && opt.includes("Nẻo về sen nở");
               return (
                 <button
                   key={opt}
                   type="button"
-                  onClick={() => !isDisabled && setMotif(opt)}
-                  disabled={isDisabled}
-                  className={`relative py-2.5 sm:py-3 px-3 sm:px-4 border rounded-lg text-xs sm:text-sm text-left transition-all duration-300 ${isDisabled ? "opacity-40 cursor-not-allowed bg-gray-50 border-gray-100" :
+                  onClick={() => setMotif(opt)}
+                  className={`relative py-2.5 sm:py-3 px-3 sm:px-4 border rounded-lg text-xs sm:text-sm text-left transition-all duration-300 ${
                     motif === opt
                       ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium shadow-sm"
                       : "border-gray-200 text-gray-600 hover:border-brand-yellow/50 hover:bg-brand-paper"
                   }`}
                   aria-pressed={motif === opt}
-                  aria-disabled={isDisabled}
                 >
                   {motif === opt && <motion.div layoutId="motif-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
                   <span className="relative z-10 flex items-center justify-between gap-2">

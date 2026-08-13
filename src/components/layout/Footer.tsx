@@ -67,11 +67,11 @@ export default function Footer() {
             </li>
             <li className="flex items-center space-x-3">
               <Phone size={18} className="flex-shrink-0" aria-hidden="true" />
-              <a href="tel:0909991042" className="hover:text-brand-yellow transition-colors">090 999 1042</a>
+              <a href="tel:0363816213" className="hover:text-brand-yellow transition-colors">036 381 6213</a>
             </li>
             <li className="flex items-center space-x-3">
               <Mail size={18} className="flex-shrink-0" aria-hidden="true" />
-              <a href="mailto:lienhe@vicaris.vn" className="hover:text-brand-yellow transition-colors">lienhe@vicaris.vn</a>
+              <a href="mailto:gieohathieuthuong@gmail.com" className="hover:text-brand-yellow transition-colors">gieohathieuthuong@gmail.com</a>
             </li>
           </ul>
         </div>

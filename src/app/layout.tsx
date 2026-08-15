@@ -25,13 +25,13 @@ export const metadata: Metadata = {
     siteName: "Đèn thiền Mực, trà và thi",
     title: "Đèn thiền Mực, trà và thi | Ánh sáng chữa lành",
     description: "Đèn thiền thủ công từ giấy dó, gỗ pơmu và mực tàu – Gây quỹ giáo dục từ Quỹ Vicaris.",
-    images: [{ url: "/images/products/gallery1.jpg", width: 1200, height: 630, alt: "Đèn thiền Mực, trà và thi" }],
+    images: [{ url: "/images/products/p1.jpg", width: 1200, height: 630, alt: "Đèn thiền Mực, trà và thi" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Đèn thiền Mực, trà và thi | Ánh sáng chữa lành",
     description: "Đèn thiền thủ công từ giấy dó, gỗ pơmu và mực tàu – Gây quỹ giáo dục từ Quỹ Vicaris.",
-    images: ["/images/products/gallery1.jpg"],
+    images: ["/images/products/p1.jpg"],
   },
   robots: {
     index: true,

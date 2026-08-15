@@ -13,7 +13,7 @@ import imgSen from "../../../public/images/products/motifs/hoa sen thuy mac.jpg"
 import imgTre from "../../../public/images/products/motifs/thuy mac tre truc.jpg";
 import imgNeo from "../../../public/images/products/motifs/neo ve sen som.jpg";
 
-const COMBO_OPTIONS = ["Không", "ĐT1", "ĐT2", "ĐT3"] as const;
+const COMBO_OPTIONS = ["Không", "Cặp đèn", "ĐT1", "ĐT2", "ĐT3"] as const;
 const MOTIF_OPTIONS = [
   "Đá và hoa + chữ Tâm An",
   "Hoa sen thủy mặc",
@@ -51,38 +51,79 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
   const [wood, setWood] = useState<string>("Gỗ me tây");
   const [light, setLight] = useState<string>("LED");
   const [quantity, setQuantity] = useState(1);
-
-  const isSmallSize = size === "Nhỏ (15x15x18cm)";
+  const [addText, setAddText] = useState(false);
 
   const price = useMemo(() => {
-    let currentPrice = combo !== "Không" ? COMBO_PRICE : (isSmallSize ? SMALL_PRICE : LARGE_PRICE);
-    if (motif === "Hoa sen rực rỡ") {
-      currentPrice += 50000;
+    let basePrice = 370000;
+    
+    if (combo === "ĐT2") {
+      basePrice = wood === "Gỗ me tây" ? 890000 : 1332000;
+    } else if (wood === "Gỗ me tây") {
+      if (size === "Nhỏ (15x15x18cm)") {
+        if (combo === "Không") basePrice = 370000;
+        else if (combo === "Cặp đèn") basePrice = 699000;
+        else if (combo === "ĐT1") basePrice = 490000;
+        else if (combo === "ĐT3") basePrice = 799000;
+      } else {
+        if (combo === "Không") basePrice = 520000;
+        else if (combo === "Cặp đèn") basePrice = 999000;
+        else if (combo === "ĐT1") basePrice = 640000;
+        else if (combo === "ĐT3") basePrice = 949000;
+      }
+    } else {
+      // Gỗ pơmu
+      if (size === "Nhỏ (15x15x18cm)") {
+        if (combo === "Không") basePrice = 555000;
+        else if (combo === "Cặp đèn") basePrice = 1049000;
+        else if (combo === "ĐT1") basePrice = 666000;
+        else if (combo === "ĐT3") basePrice = 999000;
+      } else {
+        if (combo === "Không") basePrice = 777000;
+        else if (combo === "Cặp đèn") basePrice = 1409000;
+        else if (combo === "ĐT1") basePrice = 888000;
+        else if (combo === "ĐT3") basePrice = 1499000;
+      }
     }
+
+    let currentPrice = basePrice;
+    
+    if (motif === "Hoa sen rực rỡ") {
+      // 1499k for Pơmu Lớn ĐT3 already includes Hoa sen rực rỡ
+      if (!(wood === "Gỗ pơmu" && size === "Lớn (18x18x25cm)" && combo === "ĐT3")) {
+        currentPrice += 50000;
+      }
+    } else if (motif === "Đèn theo ý tưởng của bạn?") {
+      currentPrice += 200000;
+    }
+
+    if (addText) {
+      currentPrice += 100000;
+    }
+
     return currentPrice;
-  }, [combo, isSmallSize, motif]);
+  }, [combo, size, motif, wood, addText]);
 
   const totalPrice = price * quantity;
 
   const handleAddToCart = useCallback(() => {
-    const optionsStr = `Combo: ${combo} | Kích thước: ${size} | Họa tiết: ${motif} | Loại đế: ${wood} | Ánh sáng: ${light}`;
+    const optionsStr = `Combo: ${combo} | Kích thước: ${size} | Họa tiết: ${motif} | Loại đế: ${wood} | Ánh sáng: ${light}${addText ? ' | Viết chữ thêm' : ''}`;
     const cartProduct = {
       ...productBase,
-      id: `${productBase.slug}-${combo}-${size}-${motif}-${wood}-${light}`.replace(/\s+/g, '-').toLowerCase(),
+      id: `${productBase.slug}-${combo}-${size}-${motif}-${wood}-${light}${addText ? '-addText' : ''}`.replace(/\s+/g, '-').toLowerCase(),
       price,
       name: `${productBase.name} (${size})`,
       options: optionsStr,
     };
     addItem(cartProduct, quantity);
     toast.success("Đã thêm vào giỏ hàng");
-  }, [addItem, combo, light, motif, price, productBase, quantity, size, wood]);
+  }, [addItem, combo, light, motif, price, productBase, quantity, size, wood, addText]);
 
   const formattedTotal = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalPrice);
 
   return (
     <div className="flex flex-col gap-6 sm:gap-8">
       <div className="text-xl sm:text-2xl font-bold text-brand-terracotta font-serif mb-1 sm:mb-2">
-        Giá: {new Intl.NumberFormat('vi-VN').format(SMALL_PRICE)}đ - {new Intl.NumberFormat('vi-VN').format(COMBO_PRICE + 50000)}đ
+        Giá: {new Intl.NumberFormat('vi-VN').format(370000)}đ - {new Intl.NumberFormat('vi-VN').format(1499000)}đ
       </div>
 
       {/* Short Description */}
@@ -164,6 +205,22 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
               />
             </motion.div>
           )}
+
+          {/* Additional Options */}
+          <div className="mt-4">
+            <label className="flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-all duration-300 hover:bg-brand-paper">
+              <div className="relative flex items-center">
+                <input
+                  type="checkbox"
+                  checked={addText}
+                  onChange={(e) => setAddText(e.target.checked)}
+                  className="peer h-5 w-5 cursor-pointer appearance-none rounded border border-gray-300 checked:border-brand-yellow checked:bg-brand-yellow transition-all"
+                />
+                <Check size={14} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-brand-brown opacity-0 peer-checked:opacity-100 pointer-events-none" strokeWidth={3} />
+              </div>
+              <span className="text-sm text-gray-700 font-medium">Viết chữ thêm (+100.000đ) (2 - 4 chữ)</span>
+            </label>
+          </div>
         </fieldset>
 
         {/* Details Grid */}

@@ -15,6 +15,7 @@ import img9 from "../../../public/images/products/story/anh9.jpg";
 import img10 from "../../../public/images/products/story/anh10.jpg";
 import img11 from "../../../public/images/products/story/phu-kien-usb.jpg";
 import img12 from "../../../public/images/products/story/phu-kien-nen.jpg";
+import img13 from "../../../public/images/products/story/bang-gia-den-thap-nen.jpg";
 
 interface StoryItem {
   title?: string;
@@ -23,6 +24,8 @@ interface StoryItem {
   isHighlight?: boolean;
   isPoem?: boolean;
   isFullWidthImage?: boolean;
+  isFullWidthImages?: boolean;
+  images?: (typeof img1)[];
   isTwoImages?: boolean;
   imgLeft?: typeof img1;
   imgRight?: typeof img1;
@@ -82,8 +85,8 @@ const STORIES: StoryItem[] = [
     imgRight: img12,
   },
   {
-    img: img10,
-    isFullWidthImage: true,
+    isFullWidthImages: true,
+    images: [img10, img13],
   },
 ];
 
@@ -135,6 +138,25 @@ export default function ProductStory() {
                     sizes="100vw"
                     loading="lazy"
                   />
+                </div>
+              );
+            }
+
+            if (story.isFullWidthImages && story.images) {
+              return (
+                <div key={idx} className="flex flex-col gap-8 sm:gap-12 md:gap-16 w-full">
+                  {story.images.map((image, i) => (
+                    <div key={i} className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-xl flex items-center justify-center w-full">
+                      <Image 
+                        src={image} 
+                        alt={`Bảng giá sản phẩm ${i + 1}`} 
+                        quality={70}
+                        className="w-full h-auto"
+                        sizes="100vw"
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
                 </div>
               );
             }

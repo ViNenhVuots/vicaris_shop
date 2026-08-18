@@ -27,16 +27,16 @@ export default function ProductMasonry() {
 
         <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
           {images.map((src, idx) => (
-            <div 
-              key={idx} 
+            <div
+              key={idx}
               className="relative overflow-hidden rounded-xl group cursor-pointer break-inside-avoid shadow-sm hover:shadow-xl transition-all"
               onClick={() => setSelectedImg(src)}
             >
-              <Image 
-                src={src} 
-                alt={`Gallery image ${idx + 1}`} 
-                width={600} 
-                height={idx % 2 === 0 ? 750 : 600} 
+              <Image
+                src={src}
+                alt={`Gallery image ${idx + 1}`}
+                width={600}
+                height={idx % 2 === 0 ? 750 : 600}
                 loading="lazy"
                 quality={50}
                 className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
@@ -61,13 +61,13 @@ export default function ProductMasonry() {
             className="fixed inset-0 z-[100] bg-brand-paper/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-12 cursor-zoom-out"
             onClick={() => setSelectedImg(null)}
           >
-            <button 
+            <button
               className="absolute top-6 right-6 w-12 h-12 bg-white/50 hover:bg-white rounded-full flex items-center justify-center text-brand-brown transition-colors z-50"
               onClick={() => setSelectedImg(null)}
             >
               <X size={24} />
             </button>
-            <motion.div 
+            <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -75,10 +75,10 @@ export default function ProductMasonry() {
               className="relative w-full h-full max-w-6xl max-h-[90vh] rounded-xl overflow-hidden shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <Image 
-                src={selectedImg} 
-                alt="Zoomed gallery image" 
-                fill 
+              <Image
+                src={selectedImg}
+                alt="Zoomed gallery image"
+                fill
                 className="object-contain"
                 quality={75}
               />

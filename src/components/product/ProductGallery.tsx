@@ -81,6 +81,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
               sizes="100px" 
               className="object-cover"
               loading="lazy"
+              quality={50}
             />
           </button>
         ))}
@@ -106,6 +107,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
               sizes="(max-width: 768px) 100vw, 50vw"
               className="w-full h-auto object-contain max-h-[60vh] sm:max-h-[80vh]"
               priority={currentIndex === 0}
+              quality={70}
             />
           </motion.div>
         </AnimatePresence>
@@ -192,7 +194,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
                   fill 
                   sizes="100vw"
                   className="object-contain"
-                  quality={90}
+                  quality={75}
                 />
               </motion.div>
 

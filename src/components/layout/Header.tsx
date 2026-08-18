@@ -110,6 +110,7 @@ export default function Header() {
                 width={48} 
                 height={48} 
                 priority
+                quality={70}
                 className="group-hover:scale-110 transition-transform duration-300 shrink-0 w-8 h-8 sm:w-12 sm:h-12 object-contain" 
               />
               <span className="text-base sm:text-xl md:text-2xl font-serif font-extrabold tracking-wider sm:tracking-widest text-brand-brown uppercase whitespace-nowrap">
@@ -233,6 +234,7 @@ export default function Header() {
                     alt="Logo Mực Trà và Thi" 
                     width={32} 
                     height={32} 
+                    quality={70}
                     className="w-8 h-8 sm:w-10 sm:h-10 object-contain shrink-0" 
                   />
                   <span className="text-lg sm:text-xl font-serif font-extrabold uppercase tracking-widest text-brand-brown">

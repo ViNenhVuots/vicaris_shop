@@ -38,6 +38,7 @@ export default function ProductMasonry() {
                 width={600} 
                 height={idx % 2 === 0 ? 750 : 600} 
                 loading="lazy"
+                quality={50}
                 className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-brand-brown/0 group-hover:bg-brand-brown/20 transition-colors duration-300 flex items-center justify-center">
@@ -79,7 +80,7 @@ export default function ProductMasonry() {
                 alt="Zoomed gallery image" 
                 fill 
                 className="object-contain"
-                quality={100}
+                quality={75}
               />
             </motion.div>
           </motion.div>

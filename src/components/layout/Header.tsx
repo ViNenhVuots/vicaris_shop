@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Search, ShoppingBag, Menu, X } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -103,9 +104,14 @@ export default function Header() {
           {/* LEFT: Logo (Desktop: Left, Mobile: Center) */}
           <div className="flex-1 flex items-center justify-center md:justify-start">
             <Link href="/" className="group flex items-center gap-1.5 sm:gap-2" aria-label="Trang chủ - Mực trà và thi">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-brand-yellow group-hover:scale-110 transition-transform duration-300 shrink-0 sm:w-7 sm:h-7" aria-hidden="true">
-                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/>
-              </svg>
+              <Image 
+                src="/images/logo.png" 
+                alt="Logo Mực Trà và Thi" 
+                width={48} 
+                height={48} 
+                priority
+                className="group-hover:scale-110 transition-transform duration-300 shrink-0 w-8 h-8 sm:w-12 sm:h-12 object-contain" 
+              />
               <span className="text-base sm:text-xl md:text-2xl font-serif font-extrabold tracking-wider sm:tracking-widest text-brand-brown uppercase whitespace-nowrap">
                 MỰC TRÀ VÀ THI
               </span>
@@ -222,9 +228,13 @@ export default function Header() {
             >
               <div className="flex justify-between items-center p-5 sm:p-6 border-b border-brand-brown/10">
                 <div className="flex items-center gap-2 text-brand-terracotta">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/>
-                  </svg>
+                  <Image 
+                    src="/images/logo.png" 
+                    alt="Logo Mực Trà và Thi" 
+                    width={32} 
+                    height={32} 
+                    className="w-8 h-8 sm:w-10 sm:h-10 object-contain shrink-0" 
+                  />
                   <span className="text-lg sm:text-xl font-serif font-extrabold uppercase tracking-widest text-brand-brown">
                     MỰC TRÀ VÀ THI
                   </span>

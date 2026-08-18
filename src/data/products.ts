@@ -27,6 +27,7 @@ export const products: ProductData[] = [
       "/images/products/p5.jpg",
       "/images/products/p6.jpg",
       "/images/products/p7.jpg",
+      "/images/products/p8.jpg",
     ],
     category: "Đèn Thiền",
     description: "Đèn thiền Mực, trà và thi là một sáng tác đề cao nét thiền từ chất liệu và ánh sáng mộc mạc. Sự kết hợp thủ công giữa truyền thống và hiện đại để định hình đầy tinh tế, là món quà cao cấp ý nghĩa.",

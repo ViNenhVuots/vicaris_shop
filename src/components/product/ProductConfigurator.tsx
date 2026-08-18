@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 
 import imgTaman from "../../../public/images/products/motifs/Da va hoa - chu tam am.jpg";
 import imgSen from "../../../public/images/products/motifs/hoa sen thuy mac.jpg";
+import imgSenRucRo from "../../../public/images/products/motifs/hoa sen ruc ro.jpg";
 import imgTre from "../../../public/images/products/motifs/thuy mac tre truc.jpg";
 import imgNeo from "../../../public/images/products/motifs/neo ve sen som.jpg";
 
@@ -29,6 +30,7 @@ const LIGHT_OPTIONS = ["LED", "Nến tealight"] as const;
 const MOTIF_IMAGES: Record<string, typeof imgTaman> = {
   "Đá và hoa + chữ Tâm An": imgTaman,
   "Hoa sen thủy mặc": imgSen,
+  "Hoa sen rực rỡ": imgSenRucRo,
   "Thủy mặc tre trúc": imgTre,
   "Hoa sen thủy mặc + chữ Nẻo về sen nở": imgNeo,
 };

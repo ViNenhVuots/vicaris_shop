@@ -9,7 +9,8 @@ import { Toaster } from "sonner";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const playfair = Playfair_Display({ subsets: ["latin", "vietnamese"], variable: "--font-playfair", display: "swap" });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://muctravatri.vn");
+// Cố định tên miền hiện tại để Zalo/Facebook lấy được ảnh (Tránh lỗi phân giải của Vercel)
+const SITE_URL = "https://vicaris-shop.vercel.app";
 
 export const metadata: Metadata = {
   title: {
@@ -25,13 +26,13 @@ export const metadata: Metadata = {
     siteName: "Đèn thiền Mực, trà và thi",
     title: "Đèn thiền Mực, trà và thi | Ánh sáng chữa lành",
     description: "Đèn thiền thủ công từ giấy dó, gỗ pơmu và mực tàu – Gây quỹ giáo dục từ Quỹ Vicaris.",
-    images: [{ url: "/images/logo.png", width: 1200, height: 630, alt: "Logo Đèn thiền Mực, trà và thi" }],
+    images: [{ url: "/images/logo.png?v=2", width: 1200, height: 630, alt: "Logo Đèn thiền Mực, trà và thi" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Đèn thiền Mực, trà và thi | Ánh sáng chữa lành",
     description: "Đèn thiền thủ công từ giấy dó, gỗ pơmu và mực tàu – Gây quỹ giáo dục từ Quỹ Vicaris.",
-    images: ["/images/logo.png"],
+    images: ["/images/logo.png?v=2"],
   },
   robots: {
     index: true,

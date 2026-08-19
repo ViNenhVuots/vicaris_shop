@@ -51,14 +51,27 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: {
       title: `${product.name} | Đèn thiền Mực, trà và thi`,
       description: product.description,
-      images: [{ url: product.image || "/images/logo.png?v=2", width: 1200, height: 630, alt: product.name }],
+      images: [
+        { 
+          url: product.image?.startsWith('http') 
+            ? product.image 
+            : `https://vicaris-shop.vercel.app${product.image || '/images/logo.png'}?v=3`, 
+          width: 1200, 
+          height: 630, 
+          alt: product.name 
+        }
+      ],
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
       title: product.name,
       description: product.description,
-      images: [product.image || "/images/logo.png?v=2"],
+      images: [
+        product.image?.startsWith('http') 
+          ? product.image 
+          : `https://vicaris-shop.vercel.app${product.image || '/images/logo.png'}?v=3`
+      ],
     },
   };
 }

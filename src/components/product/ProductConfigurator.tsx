@@ -14,7 +14,13 @@ import imgSenRucRo from "../../../public/images/products/motifs/hoa sen ruc ro.j
 import imgTre from "../../../public/images/products/motifs/thuy mac tre truc.jpg";
 import imgNeo from "../../../public/images/products/motifs/neo ve sen som.jpg";
 
-const COMBO_OPTIONS = ["Không", "Cặp đèn", "ĐT1: Đèn + trà", "Cao cấp ĐT3: Đèn + trà + thư pháp"] as const;
+const COMBO_OPTIONS = ["Không", "Cặp đèn", "ĐT1", "ĐT3"] as const;
+const COMBO_LABELS: Record<string, string> = {
+  "Không": "Không",
+  "Cặp đèn": "Cặp đèn",
+  "ĐT1": "ĐT1: Đèn + trà",
+  "ĐT3": "Cao cấp ĐT3: Đèn + trà + thư pháp"
+};
 const MOTIF_OPTIONS = [
   "Đá và hoa + chữ Tâm An",
   "Hoa sen thủy mặc",
@@ -57,39 +63,39 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
 
   const price = useMemo(() => {
     let basePrice = 370000;
-    
+
     if (wood === "Gỗ me tây") {
       if (size === "Nhỏ (15x15x18cm)") {
         if (combo === "Không") basePrice = 370000;
         else if (combo === "Cặp đèn") basePrice = 699000;
-        else if (combo === "ĐT1: Đèn + trà") basePrice = 490000;
-        else if (combo === "Cao cấp ĐT3: Đèn + trà + thư pháp") basePrice = 799000;
+        else if (combo === "ĐT1") basePrice = 490000;
+        else if (combo === "ĐT3") basePrice = 799000;
       } else {
         if (combo === "Không") basePrice = 520000;
         else if (combo === "Cặp đèn") basePrice = 999000;
-        else if (combo === "ĐT1: Đèn + trà") basePrice = 640000;
-        else if (combo === "Cao cấp ĐT3: Đèn + trà + thư pháp") basePrice = 949000;
+        else if (combo === "ĐT1") basePrice = 640000;
+        else if (combo === "ĐT3") basePrice = 949000;
       }
     } else {
       // Gỗ pơmu
       if (size === "Nhỏ (15x15x18cm)") {
         if (combo === "Không") basePrice = 555000;
         else if (combo === "Cặp đèn") basePrice = 1049000;
-        else if (combo === "ĐT1: Đèn + trà") basePrice = 666000;
-        else if (combo === "Cao cấp ĐT3: Đèn + trà + thư pháp") basePrice = 999000;
+        else if (combo === "ĐT1") basePrice = 666000;
+        else if (combo === "ĐT3") basePrice = 999000;
       } else {
         if (combo === "Không") basePrice = 777000;
         else if (combo === "Cặp đèn") basePrice = 1409000;
-        else if (combo === "ĐT1: Đèn + trà") basePrice = 888000;
-        else if (combo === "Cao cấp ĐT3: Đèn + trà + thư pháp") basePrice = 1499000;
+        else if (combo === "ĐT1") basePrice = 888000;
+        else if (combo === "ĐT3") basePrice = 1499000;
       }
     }
 
     let currentPrice = basePrice;
-    
+
     if (motif === "Hoa sen rực rỡ") {
       // 1499k for Pơmu Lớn ĐT3 already includes Hoa sen rực rỡ
-      if (!(wood === "Gỗ pơmu" && size === "Lớn (18x18x25cm)" && combo === "Cao cấp ĐT3: Đèn + trà + thư pháp")) {
+      if (!(wood === "Gỗ pơmu" && size === "Lớn (18x18x25cm)" && combo === "ĐT3")) {
         currentPrice += 50000;
       }
     } else if (motif === "Đèn theo ý tưởng của bạn?") {
@@ -106,7 +112,7 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
   const totalPrice = price * quantity;
 
   const handleAddToCart = useCallback(() => {
-    const optionsStr = `Combo: ${combo} | Kích thước: ${size} | Họa tiết: ${motif} | Loại đế: ${wood} | Ánh sáng: ${light}${addText ? ' | Viết chữ thêm' : ''}`;
+    const optionsStr = `Combo: ${COMBO_LABELS[combo] || combo} | Kích thước: ${size} | Họa tiết: ${motif} | Loại đế: ${wood} | Ánh sáng: ${light}${addText ? ' | Viết chữ thêm' : ''}`;
     const cartProduct = {
       ...productBase,
       id: `${productBase.slug}-${combo}-${size}-${motif}-${wood}-${light}${addText ? '-addText' : ''}`.replace(/\s+/g, '-').toLowerCase(),
@@ -150,11 +156,11 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
                 className={`relative py-2.5 sm:py-3 px-1 border rounded-lg text-sm transition-all duration-300 font-medium ${combo === opt
                   ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown shadow-sm"
                   : "border-gray-200 text-gray-500 hover:border-brand-yellow/50 hover:bg-brand-paper"
-                }`}
+                  }`}
                 aria-pressed={combo === opt}
               >
                 {combo === opt && <motion.div layoutId="combo-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
-                <span className="relative z-10">{opt}</span>
+                <span className="relative z-10">{COMBO_LABELS[opt] || opt}</span>
               </button>
             ))}
           </div>
@@ -170,11 +176,10 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
                   key={opt}
                   type="button"
                   onClick={() => setMotif(opt)}
-                  className={`relative py-2.5 sm:py-3 px-3 sm:px-4 border rounded-lg text-xs sm:text-sm text-left transition-all duration-300 ${
-                    motif === opt
+                  className={`relative py-2.5 sm:py-3 px-3 sm:px-4 border rounded-lg text-xs sm:text-sm text-left transition-all duration-300 ${motif === opt
                       ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium shadow-sm"
                       : "border-gray-200 text-gray-600 hover:border-brand-yellow/50 hover:bg-brand-paper"
-                  }`}
+                    }`}
                   aria-pressed={motif === opt}
                 >
                   {motif === opt && <motion.div layoutId="motif-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
@@ -237,7 +242,7 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
                   className={`relative py-2.5 sm:py-3 px-2 sm:px-3 border rounded-lg text-xs sm:text-sm transition-all duration-300 ${wood === opt
                     ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium"
                     : "border-gray-200 text-gray-500 hover:border-brand-yellow/50"
-                  }`}
+                    }`}
                   aria-pressed={wood === opt}
                 >
                   {wood === opt && <motion.div layoutId="wood-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
@@ -259,7 +264,7 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
                   className={`relative py-2.5 sm:py-3 px-2 sm:px-3 border rounded-lg text-xs sm:text-sm transition-all duration-300 ${size === opt
                     ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium"
                     : "border-gray-200 text-gray-500 hover:border-brand-yellow/50"
-                  }`}
+                    }`}
                   aria-pressed={size === opt}
                 >
                   {size === opt && <motion.div layoutId="size-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
@@ -281,7 +286,7 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
                   className={`relative py-2.5 sm:py-3 px-2 sm:px-3 border rounded-lg text-xs sm:text-sm transition-all duration-300 ${light === opt
                     ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium"
                     : "border-gray-200 text-gray-500 hover:border-brand-yellow/50"
-                  }`}
+                    }`}
                   aria-pressed={light === opt}
                 >
                   {light === opt && <motion.div layoutId="light-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}

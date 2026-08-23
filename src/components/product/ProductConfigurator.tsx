@@ -14,7 +14,7 @@ import imgSenRucRo from "../../../public/images/products/motifs/hoa sen ruc ro.j
 import imgTre from "../../../public/images/products/motifs/thuy mac tre truc.jpg";
 import imgNeo from "../../../public/images/products/motifs/neo ve sen som.jpg";
 
-const COMBO_OPTIONS = ["Không", "Cặp đèn", "ĐT1", "ĐT2", "ĐT3"] as const;
+const COMBO_OPTIONS = ["Không", "Cặp đèn", "ĐT1: Đèn + trà", "Cao cấp ĐT3: Đèn + trà + thư pháp"] as const;
 const MOTIF_OPTIONS = [
   "Đá và hoa + chữ Tâm An",
   "Hoa sen thủy mặc",
@@ -58,32 +58,30 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
   const price = useMemo(() => {
     let basePrice = 370000;
     
-    if (combo === "ĐT2") {
-      basePrice = wood === "Gỗ me tây" ? 890000 : 1332000;
-    } else if (wood === "Gỗ me tây") {
+    if (wood === "Gỗ me tây") {
       if (size === "Nhỏ (15x15x18cm)") {
         if (combo === "Không") basePrice = 370000;
         else if (combo === "Cặp đèn") basePrice = 699000;
-        else if (combo === "ĐT1") basePrice = 490000;
-        else if (combo === "ĐT3") basePrice = 799000;
+        else if (combo === "ĐT1: Đèn + trà") basePrice = 490000;
+        else if (combo === "Cao cấp ĐT3: Đèn + trà + thư pháp") basePrice = 799000;
       } else {
         if (combo === "Không") basePrice = 520000;
         else if (combo === "Cặp đèn") basePrice = 999000;
-        else if (combo === "ĐT1") basePrice = 640000;
-        else if (combo === "ĐT3") basePrice = 949000;
+        else if (combo === "ĐT1: Đèn + trà") basePrice = 640000;
+        else if (combo === "Cao cấp ĐT3: Đèn + trà + thư pháp") basePrice = 949000;
       }
     } else {
       // Gỗ pơmu
       if (size === "Nhỏ (15x15x18cm)") {
         if (combo === "Không") basePrice = 555000;
         else if (combo === "Cặp đèn") basePrice = 1049000;
-        else if (combo === "ĐT1") basePrice = 666000;
-        else if (combo === "ĐT3") basePrice = 999000;
+        else if (combo === "ĐT1: Đèn + trà") basePrice = 666000;
+        else if (combo === "Cao cấp ĐT3: Đèn + trà + thư pháp") basePrice = 999000;
       } else {
         if (combo === "Không") basePrice = 777000;
         else if (combo === "Cặp đèn") basePrice = 1409000;
-        else if (combo === "ĐT1") basePrice = 888000;
-        else if (combo === "ĐT3") basePrice = 1499000;
+        else if (combo === "ĐT1: Đèn + trà") basePrice = 888000;
+        else if (combo === "Cao cấp ĐT3: Đèn + trà + thư pháp") basePrice = 1499000;
       }
     }
 
@@ -91,7 +89,7 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
     
     if (motif === "Hoa sen rực rỡ") {
       // 1499k for Pơmu Lớn ĐT3 already includes Hoa sen rực rỡ
-      if (!(wood === "Gỗ pơmu" && size === "Lớn (18x18x25cm)" && combo === "ĐT3")) {
+      if (!(wood === "Gỗ pơmu" && size === "Lớn (18x18x25cm)" && combo === "Cao cấp ĐT3: Đèn + trà + thư pháp")) {
         currentPrice += 50000;
       }
     } else if (motif === "Đèn theo ý tưởng của bạn?") {
@@ -140,7 +138,7 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
         {/* 1. Combo */}
         <fieldset>
           <div className="flex justify-between items-center mb-2 sm:mb-3">
-            <legend className="text-sm font-medium text-brand-brown font-serif uppercase tracking-wider">1. Combo</legend>
+            <legend className="text-sm font-medium text-brand-brown font-serif uppercase tracking-wider">1. Set quà tặng</legend>
             <span className="text-xs text-brand-terracotta font-medium bg-brand-terracotta/10 px-2 py-1 rounded">Tiết kiệm hơn</span>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">

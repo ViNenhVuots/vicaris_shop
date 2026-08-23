@@ -220,7 +220,7 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
                 />
                 <Check size={14} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-brand-brown opacity-0 peer-checked:opacity-100 pointer-events-none" strokeWidth={3} />
               </div>
-              <span className="text-sm text-gray-700 font-medium">Viết chữ thêm (+100.000đ) (2 - 4 chữ)</span>
+              <span className="text-sm text-gray-700 font-medium">Viết chữ thêm (100.000đ) (2 - 4 chữ)</span>
             </label>
           </div>
         </fieldset>

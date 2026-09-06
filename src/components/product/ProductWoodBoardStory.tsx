@@ -21,7 +21,24 @@ const CUSTOM_SAMPLES = [
   { src: `${IMG}/17-hien-phap-lac-tru.jpg`, alt: "Mẫu Hiện pháp lạc trú" },
 ];
 
-function Photo({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
+function Photo({ src, alt, className = "", natural = false }: { src: string; alt: string; className?: string, natural?: boolean }) {
+  if (natural) {
+    return (
+      <div className={`relative rounded-xl sm:rounded-2xl overflow-hidden shadow-xl bg-[#e8e4db] ${className}`}>
+        <Image
+          src={src}
+          alt={alt}
+          width={0}
+          height={0}
+          sizes="100vw"
+          quality={70}
+          style={{ width: '100%', height: 'auto' }}
+          className="block hover:scale-105 transition-transform duration-700"
+          loading="lazy"
+        />
+      </div>
+    );
+  }
   return (
     <div className={`relative rounded-xl sm:rounded-2xl overflow-hidden shadow-xl bg-[#e8e4db] ${className}`}>
       <Image
@@ -125,9 +142,9 @@ export default function ProductWoodBoardStory() {
             <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-brand-brown text-center mb-8 sm:mb-12">
               Các mẫu thiết kế theo yêu cầu riêng
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 sm:gap-6 space-y-4 sm:space-y-6">
               {CUSTOM_SAMPLES.map((item) => (
-                <Photo key={item.src} src={item.src} alt={item.alt} className="aspect-[4/3]" />
+                <Photo key={item.src} src={item.src} alt={item.alt} natural className="break-inside-avoid" />
               ))}
             </div>
           </div>

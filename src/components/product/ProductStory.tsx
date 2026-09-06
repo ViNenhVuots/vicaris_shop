@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { Quote } from "lucide-react";
+import { ProductData } from "@/data/products";
+import ProductWoodBoardStory from "@/components/product/ProductWoodBoardStory";
 
 import img1 from "../../../public/images/products/story/anh1.gif";
 import img2 from "../../../public/images/products/story/anh2.jpg";
@@ -90,7 +92,10 @@ const STORIES: StoryItem[] = [
   },
 ];
 
-export default function ProductStory() {
+export default function ProductStory({ product }: { product?: ProductData }) {
+  if (product?.configurator === "wood-board") {
+    return <ProductWoodBoardStory />;
+  }
   return (
     <section className="py-12 sm:py-16 md:py-24 bg-[#FAF9F5]" aria-label="Câu chuyện sản phẩm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">

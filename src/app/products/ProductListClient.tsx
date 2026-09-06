@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { Search, SlidersHorizontal, Eye, ChevronDown } from "lucide-react";
 import { ProductData } from "@/data/products";
+import { formatProductPrice } from "@/lib/utils";
 
 export default function ProductListClient({ initialProducts }: { initialProducts: ProductData[] }) {
   const searchParams = useSearchParams();
@@ -185,7 +186,7 @@ export default function ProductListClient({ initialProducts }: { initialProducts
                   {product.name}
                 </h3>
                 <div className="font-bold text-brand-yellow">
-                  {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price)}
+                  {formatProductPrice(product.price, product.priceMax)}
                 </div>
               </div>
             </Link>

@@ -134,13 +134,14 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
       {/* Sections 3-9: Introduction and Storytelling */}
       <Suspense fallback={<SectionSkeleton />}>
-        <ProductStory />
+        <ProductStory product={product} />
       </Suspense>
 
-      {/* Section 10: Video */}
-      <Suspense fallback={<SectionSkeleton />}>
-        <ProductVideo />
-      </Suspense>
+      {product.configurator !== "wood-board" && (
+        <Suspense fallback={<SectionSkeleton />}>
+          <ProductVideo />
+        </Suspense>
+      )}
     </main>
   );
 }

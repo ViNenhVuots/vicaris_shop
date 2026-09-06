@@ -30,6 +30,10 @@ function mapSupabaseProduct(item: any): ProductData {
     description: item.description || "",
     features: item.features || [],
     isCombo: (item.name as string).toLowerCase().includes("combo"),
+    priceMax: item.price_max ? Number(item.price_max) : undefined,
+    configurator: item.configurator || undefined,
+    variants: item.variants || undefined,
+    shortDescription: item.short_description || undefined,
   };
 }
 
@@ -59,12 +63,23 @@ const getCachedProducts = unstable_cache(
 
       if (error) throw error;
       
+      let fetchedProducts: ProductData[] = [];
       if (data && data.length > 0) {
-        return data.map(mapSupabaseProduct);
+        fetchedProducts = data.map(mapSupabaseProduct);
       }
       
-      console.warn("Supabase returned empty products. Falling back to mock data.");
-      return mockProducts;
+      // Merge mock products that don't exist in Supabase
+      const supabaseSlugs = new Set(fetchedProducts.map(p => p.slug));
+      const missingMockProducts = mockProducts.filter(p => !supabaseSlugs.has(p.slug));
+      
+      const allProducts = [...fetchedProducts, ...missingMockProducts];
+      
+      if (allProducts.length === 0) {
+        console.warn("Supabase returned empty products. Falling back to mock data.");
+        return mockProducts;
+      }
+      
+      return allProducts;
 
     } catch (error) {
       console.warn("Failed to fetch products from Supabase, falling back to mock data:", error);

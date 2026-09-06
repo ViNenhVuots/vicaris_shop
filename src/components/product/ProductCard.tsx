@@ -7,6 +7,7 @@ import { useCartStore, Product } from "@/store/cartStore";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
 import { useCallback } from "react";
+import { formatProductPrice } from "@/lib/utils";
 
 interface ProductCardProps {
   product: Product;
@@ -14,6 +15,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const addItem = useCartStore((state) => state.addItem);
+  const canQuickAdd = product.configurator !== "wood-board";
 
   const handleAddToCart = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
@@ -22,7 +24,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     toast.success(`Đã thêm ${product.name} vào giỏ hàng`);
   }, [addItem, product]);
 
-  const formattedPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price);
+  const formattedPrice = formatProductPrice(product.price, product.priceMax);
 
   return (
     <motion.article
@@ -45,7 +47,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
         )}
         
-        {/* Quick add button (desktop) */}
+        {canQuickAdd && (
         <div className="absolute inset-x-0 bottom-0 p-4 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 hidden md:block bg-gradient-to-t from-black/50 to-transparent">
           <button 
             onClick={handleAddToCart}
@@ -56,6 +58,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             Thêm vào giỏ
           </button>
         </div>
+        )}
       </Link>
 
       <div className="p-3 sm:p-4">
@@ -70,7 +73,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             {formattedPrice}
           </span>
           
-          {/* Mobile add button */}
+          {canQuickAdd && (
           <button 
             onClick={handleAddToCart}
             className="md:hidden w-8 h-8 flex items-center justify-center bg-brand-beige/80 rounded-full text-brand-brown hover:bg-brand-terracotta hover:text-white transition-colors"
@@ -78,6 +81,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           >
             <ShoppingBag size={14} aria-hidden="true" />
           </button>
+          )}
         </div>
       </div>
     </motion.article>

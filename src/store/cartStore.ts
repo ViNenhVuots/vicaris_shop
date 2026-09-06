@@ -5,10 +5,12 @@ export interface Product {
   id: string;
   name: string;
   price: number;
+  priceMax?: number;
   image: string;
   slug: string;
   category: string;
   options?: string;
+  configurator?: string;
 }
 
 export interface CartItem {

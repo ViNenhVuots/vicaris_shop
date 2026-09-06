@@ -19,7 +19,7 @@ export default function FeaturedProducts({ products }: FeaturedProductsProps) {
           </h2>
           <div className="w-16 h-[2px] bg-brand-yellow mb-4 sm:mb-6" aria-hidden="true" />
           <p className="text-brand-ink/70 max-w-2xl font-serif text-base sm:text-lg leading-relaxed px-2">
-            Nhiều lựa chọn từ họa tiết tranh vẽ, loại gỗ, đến kích thước và ánh sáng. Khám phá và chọn cho mình chiếc đèn phù hợp nhất hoặc đặt vẽ theo ý tưởng của riêng bạn.
+            Nhiều lựa chọn từ đèn thiền đến bảng gỗ pơmu điêu khắc thư pháp. Khám phá mẫu có sẵn hoặc đặt theo ý tưởng riêng của bạn.
           </p>
         </div>
 

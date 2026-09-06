@@ -7,6 +7,7 @@ import { ShoppingBag, Truck, Check, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 import { ProductData } from "@/data/products";
 import { motion } from "framer-motion";
+import ProductWoodBoardConfigurator from "@/components/product/ProductWoodBoardConfigurator";
 
 import imgTaman from "../../../public/images/products/motifs/Da va hoa - chu tam am.jpg";
 import imgSen from "../../../public/images/products/motifs/hoa sen thuy mac.jpg";
@@ -51,6 +52,13 @@ interface ConfiguratorProps {
 }
 
 export default function ProductConfigurator({ productBase }: ConfiguratorProps) {
+  if (productBase.configurator === "wood-board") {
+    return <ProductWoodBoardConfigurator productBase={productBase} />;
+  }
+  return <LampProductConfigurator productBase={productBase} />;
+}
+
+function LampProductConfigurator({ productBase }: ConfiguratorProps) {
   const addItem = useCartStore((state) => state.addItem);
 
   const [combo, setCombo] = useState<string>("Không");

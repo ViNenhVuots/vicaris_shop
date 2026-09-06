@@ -145,11 +145,22 @@ const getCachedFeaturedProducts = unstable_cache(
 
       if (error) throw error;
 
+      let fetchedProducts: ProductData[] = [];
       if (data && data.length > 0) {
-        return data.map(mapSupabaseProduct);
+        fetchedProducts = data.map(mapSupabaseProduct);
       }
 
-      return mockProducts.slice(0, 3);
+      // Merge mock products that don't exist in Supabase
+      const supabaseSlugs = new Set(fetchedProducts.map(p => p.slug));
+      const missingMockProducts = mockProducts.filter(p => !supabaseSlugs.has(p.slug));
+      
+      const allProducts = [...fetchedProducts, ...missingMockProducts].slice(0, 3);
+
+      if (allProducts.length === 0) {
+        return mockProducts.slice(0, 3);
+      }
+      
+      return allProducts;
     } catch (error) {
       console.warn("Failed to fetch featured products from Supabase, falling back to mock data:", error);
       return mockProducts.slice(0, 3);

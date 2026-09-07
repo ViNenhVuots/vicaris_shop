@@ -30,8 +30,6 @@ export default function Hero() {
             Sáng tác mới từ Quỹ Vicaris
           </span>
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-brand-beige leading-tight drop-shadow-lg">
-            Đèn thiền <br className="hidden sm:block" />
-            <span className="sm:hidden"> </span>
             Mực, trà và thi
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-brand-beige/90 font-serif font-light max-w-2xl mx-auto leading-relaxed drop-shadow-md mt-2 sm:mt-6">

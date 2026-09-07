@@ -111,7 +111,7 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
     }
 
     if (addText) {
-      currentPrice += 100000;
+      currentPrice += 50000;
     }
 
     return currentPrice;
@@ -185,8 +185,8 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
                   type="button"
                   onClick={() => setMotif(opt)}
                   className={`relative py-2.5 sm:py-3 px-3 sm:px-4 border rounded-lg text-xs sm:text-sm text-left transition-all duration-300 ${motif === opt
-                      ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium shadow-sm"
-                      : "border-gray-200 text-gray-600 hover:border-brand-yellow/50 hover:bg-brand-paper"
+                    ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium shadow-sm"
+                    : "border-gray-200 text-gray-600 hover:border-brand-yellow/50 hover:bg-brand-paper"
                     }`}
                   aria-pressed={motif === opt}
                 >
@@ -231,7 +231,7 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
                 />
                 <Check size={14} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-brand-brown opacity-0 peer-checked:opacity-100 pointer-events-none" strokeWidth={3} />
               </div>
-              <span className="text-sm text-gray-700 font-medium">Viết chữ thêm (100.000đ) (2 - 4 chữ)</span>
+              <span className="text-sm text-gray-700 font-medium">Viết chữ thêm (50.000đ)</span>
             </label>
           </div>
         </fieldset>

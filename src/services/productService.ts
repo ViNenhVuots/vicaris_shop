@@ -65,7 +65,15 @@ const getCachedProducts = unstable_cache(
       
       let fetchedProducts: ProductData[] = [];
       if (data && data.length > 0) {
-        fetchedProducts = data.map(mapSupabaseProduct);
+        fetchedProducts = data.map(mapSupabaseProduct).map(p => {
+          // Merge images from mock data if they exist to support local additions
+          const mockP = mockProducts.find(mp => mp.slug === p.slug);
+          if (mockP && mockP.images) {
+            // Keep unique images from both sources
+            p.images = Array.from(new Set([...mockP.images, ...p.images]));
+          }
+          return p;
+        });
       }
       
       // Merge mock products that don't exist in Supabase
@@ -111,7 +119,13 @@ const getCachedProductBySlug = unstable_cache(
       if (error) throw error;
 
       if (data) {
-        return mapSupabaseProduct(data);
+        const p = mapSupabaseProduct(data);
+        // Merge images from mock data if they exist to support local additions
+        const mockP = mockProducts.find(mp => mp.slug === p.slug);
+        if (mockP && mockP.images) {
+          p.images = Array.from(new Set([...mockP.images, ...p.images]));
+        }
+        return p;
       }
 
       return null;

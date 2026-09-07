@@ -62,7 +62,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
   return (
     <div className="flex flex-col-reverse md:flex-row gap-3 sm:gap-4 h-full">
       {/* Thumbnails (Vertical on desktop, Horizontal on mobile) */}
-      <div className="flex md:flex-col gap-2 sm:gap-3 md:gap-4 overflow-x-auto md:overflow-y-auto w-full md:w-20 lg:w-24 shrink-0 no-scrollbar py-1" role="tablist" aria-label="Ảnh thu nhỏ sản phẩm">
+      <div className="flex md:flex-col gap-2 sm:gap-3 md:gap-4 overflow-x-auto md:overflow-y-auto md:max-h-[500px] lg:max-h-[600px] w-full md:w-20 lg:w-24 shrink-0 no-scrollbar py-1" role="tablist" aria-label="Ảnh thu nhỏ sản phẩm">
         {images.map((img, idx) => (
           <button
             key={idx}

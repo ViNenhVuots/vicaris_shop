@@ -100,7 +100,7 @@ export default function ProductWoodBoardStory() {
                 <p className="mt-3 text-center font-serif text-brand-brown text-sm sm:text-base">Mẫu bảng dọc</p>
               </div>
               <div>
-                <Photo src={`${IMG}/08-den-di-thong-dong-vang.jpg`} alt="Mẫu bảng ngang" className="aspect-[4/3]" />
+                <Photo src={`${IMG}/anh13.jpg`} alt="Mẫu bảng ngang" className="aspect-[4/3]" />
                 <p className="mt-3 text-center font-serif text-brand-brown text-sm sm:text-base">Mẫu bảng ngang</p>
               </div>
               <div>

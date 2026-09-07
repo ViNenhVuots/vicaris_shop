@@ -14,23 +14,23 @@ const SITE_URL = "https://vicaris-shop.vercel.app";
 
 export const metadata: Metadata = {
   title: {
-    default: "Đèn thiền Mực, trà và thi | Ánh sáng chữa lành",
-    template: "%s | Đèn thiền Mực, trà và thi",
+    default: "Mực, trà và thi | Ánh sáng chữa lành",
+    template: "%s | Mực, trà và thi",
   },
-  description: "Đèn thiền Mực, trà và thi là một sáng tác đề cao nét thiền từ chất liệu và ánh sáng mộc mạc. Sản phẩm được thực hiện bởi Quỹ Bảo trợ giáo dục Vicaris.",
+  description: "Mực, trà và thi là một sáng tác đề cao nét thiền từ chất liệu và ánh sáng mộc mạc. Sản phẩm được thực hiện bởi Quỹ Bảo trợ giáo dục Vicaris.",
   metadataBase: new URL(SITE_URL),
   openGraph: {
     type: "website",
     locale: "vi_VN",
     url: SITE_URL,
-    siteName: "Đèn thiền Mực, trà và thi",
-    title: "Đèn thiền Mực, trà và thi | Ánh sáng chữa lành",
+    siteName: "Mực, trà và thi",
+    title: "Mực, trà và thi | Ánh sáng chữa lành",
     description: "Đèn thiền thủ công từ giấy dó, gỗ pơmu và mực tàu – Gây quỹ giáo dục từ Quỹ Vicaris.",
-    images: [{ url: `${SITE_URL}/images/logo.png?v=3`, width: 1200, height: 630, alt: "Logo Đèn thiền Mực, trà và thi" }],
+    images: [{ url: `${SITE_URL}/images/logo.png?v=3`, width: 1200, height: 630, alt: "Logo Mực, trà và thi" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Đèn thiền Mực, trà và thi | Ánh sáng chữa lành",
+    title: "Mực, trà và thi | Ánh sáng chữa lành",
     description: "Đèn thiền thủ công từ giấy dó, gỗ pơmu và mực tàu – Gây quỹ giáo dục từ Quỹ Vicaris.",
     images: [`${SITE_URL}/images/logo.png?v=3`],
   },

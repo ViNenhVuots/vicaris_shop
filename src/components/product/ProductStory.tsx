@@ -17,7 +17,8 @@ import img9 from "../../../public/images/products/story/anh9.jpg";
 import img10 from "../../../public/images/products/story/anh10.jpg";
 import img11 from "../../../public/images/products/story/phu-kien-usb.jpg";
 import img12 from "../../../public/images/products/story/phu-kien-nen.jpg";
-import img13 from "../../../public/images/products/story/bang-gia-den-thap-nen.jpg";
+import img14 from "../../../public/images/products/story/bang_gia_1.jpg";
+import img15 from "../../../public/images/products/story/bang_gia_2.jpg";
 
 interface StoryItem {
   title?: string;
@@ -88,7 +89,7 @@ const STORIES: StoryItem[] = [
   },
   {
     isFullWidthImages: true,
-    images: [img10, img13],
+    images: [img10, img14, img15],
   },
 ];
 
@@ -112,9 +113,9 @@ export default function ProductStory({ product }: { product?: ProductData }) {
             if (story.isHighlight) {
               return (
                 <div key={idx} className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center w-full min-h-[200px] sm:min-h-[300px]">
-                  <Image 
-                    src={story.img!} 
-                    alt="Sáng tác mới từ Vicaris" 
+                  <Image
+                    src={story.img!}
+                    alt="Sáng tác mới từ Vicaris"
                     width={1600}
                     height={900}
                     quality={70}
@@ -135,9 +136,9 @@ export default function ProductStory({ product }: { product?: ProductData }) {
             if (story.isFullWidthImage) {
               return (
                 <div key={idx} className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-xl flex items-center justify-center w-full">
-                  <Image 
-                    src={story.img!} 
-                    alt="Bảng giá sản phẩm" 
+                  <Image
+                    src={story.img!}
+                    alt="Bảng giá sản phẩm"
                     quality={70}
                     className="w-full h-auto"
                     sizes="100vw"
@@ -152,9 +153,9 @@ export default function ProductStory({ product }: { product?: ProductData }) {
                 <div key={idx} className="flex flex-col gap-8 sm:gap-12 md:gap-16 w-full">
                   {story.images.map((image, i) => (
                     <div key={i} className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-xl flex items-center justify-center w-full">
-                      <Image 
-                        src={image} 
-                        alt={`Bảng giá sản phẩm ${i + 1}`} 
+                      <Image
+                        src={image}
+                        alt={`Bảng giá sản phẩm ${i + 1}`}
                         quality={70}
                         className="w-full h-auto"
                         sizes="100vw"
@@ -170,9 +171,9 @@ export default function ProductStory({ product }: { product?: ProductData }) {
               return (
                 <div key={idx} className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 w-full">
                   <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-xl aspect-square bg-[#e8e4db]">
-                    <Image 
-                      src={story.imgLeft!} 
-                      alt="Phụ kiện đèn LED USB" 
+                    <Image
+                      src={story.imgLeft!}
+                      alt="Phụ kiện đèn LED USB"
                       fill
                       className="object-cover hover:scale-105 transition-transform duration-700"
                       sizes="(max-width: 640px) 100vw, 50vw"
@@ -180,9 +181,9 @@ export default function ProductStory({ product }: { product?: ProductData }) {
                     />
                   </div>
                   <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-xl aspect-square bg-[#e8e4db]">
-                    <Image 
-                      src={story.imgRight!} 
-                      alt="Phụ kiện nến tealight sáp ong" 
+                    <Image
+                      src={story.imgRight!}
+                      alt="Phụ kiện nến tealight sáp ong"
                       fill
                       className="object-cover hover:scale-105 transition-transform duration-700"
                       sizes="(max-width: 640px) 100vw, 50vw"
@@ -196,12 +197,12 @@ export default function ProductStory({ product }: { product?: ProductData }) {
             return (
               <div key={idx} className={`flex flex-col md:flex-row items-center gap-6 sm:gap-8 md:gap-12 lg:gap-24 ${idx % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
                 <div className="w-full md:w-1/2 relative rounded-xl sm:rounded-2xl overflow-hidden shadow-xl bg-[#e8e4db] min-h-[200px] flex items-center justify-center">
-                  <Image 
-                    src={story.img!} 
-                    alt={story.title || 'Hình ảnh sản phẩm'} 
+                  <Image
+                    src={story.img!}
+                    alt={story.title || 'Hình ảnh sản phẩm'}
                     quality={70}
-                    className="w-full h-auto hover:scale-105 transition-transform duration-700 relative z-10" 
-                    sizes="(max-width: 768px) 100vw, 50vw" 
+                    className="w-full h-auto hover:scale-105 transition-transform duration-700 relative z-10"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     loading="lazy"
                     onError={(e) => { e.currentTarget.style.opacity = '0'; }}
                   />

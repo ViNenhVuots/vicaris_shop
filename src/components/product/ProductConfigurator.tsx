@@ -15,19 +15,25 @@ import imgSenRucRo from "../../../public/images/products/motifs/hoa sen ruc ro.j
 import imgTre from "../../../public/images/products/motifs/thuy mac tre truc.jpg";
 import imgNeo from "../../../public/images/products/motifs/neo ve sen som.jpg";
 
-const COMBO_OPTIONS = ["Không", "Cặp đèn", "ĐT1", "ĐT3"] as const;
-const COMBO_LABELS: Record<string, string> = {
-  "Không": "Không",
-  "Cặp đèn": "Cặp đèn",
-  "ĐT1": "ĐT1: Đèn + trà",
-  "ĐT3": "Cao cấp ĐT3: Đèn + trà + thư pháp"
-};
+const TEXT_OPTIONS = [
+  "Listen deeply", "Peace Joy Hope", "Breathe and Smile", "Happiness is here and now", "Peace is every breath", "écoute avec compassion",
+  "Nẻo về sen nở", "Tay Thầy trong tay con", "Ân tình", "Đến đi thong dong", "Thong dong", "Mây trắng", "Tình Thầy", "Cõi lành trăng thu",
+  "Ơn Thầy tái sinh", "Thở đi con", "Chánh niệm", "Mỉm cười", "Ngồi yên thấy rõ", "Muốn an được an", "Lòng không bận về", "Đã về đã tới",
+  "Không bùn không sen", "Không diệt không sinh", "Hiện tại tuyệt vời", "Hiện pháp lạc trú", "Tâm tĩnh lặng chiếu", "Vô sự",
+  "Vững chãi thảnh thơi", "Ta có trong nhau", "Nhìn sâu để hiểu", "Thấy rõ để thương", "Hiểu lắng thương sâu", "Mắt thương nhìn đời",
+  "Tâm an thế giới an", "Hiểu nghĩa là thương", "Thương như Bụt thương", "Ai cũng được thương", "Có Bụt trong ta", "Bình an là chốn hẹn",
+  "Lượng cả bao dung", "Trồng một nụ cười", "Gieo trồng hạnh phúc", "Hạnh phúc bây giờ", "Hạnh phúc cầm tay", "Tùy duyên thuận pháp",
+  "Biết ơn", "Thắp sáng nguồn tâm", "Quay về nương tựa", "Khơi nguồn yêu thương", "Sống tỉnh thức", "Tươi son bền sắt",
+  "TÂM AN", "MỘT NIỆM SÁNG TRONG", "TÂM RỖNG, LÒNG THÊNH", "THÔI TÌM, HÃY THẤY", "VỐN ĐÃ ĐỦ ĐẦY", "CHẠM VÀO SỰ SỐNG", "ĐƯỜNG VỀ TRONG TÂM",
+  "HIỂU ĐỂ THƯƠNG", "TRỌN VẸN PHÚT NÀY", "HIỆN TẠI LÀ QUÀ", "HẠNH PHÚC THẬT GẦN", "DỊU DÀNG VỚI MÌNH", "LẶNG NGHE TÂM MÌNH", "GIỮ LÒNG SÁNG TRONG",
+  "BUÔNG MỘT NIỆM SẦU", "NHÀ Ở BÊN TRONG", "MỘT LÒNG BIẾT ƠN", "MÂY ĐẾN, MÂY ĐI", "THƯƠNG TỪ GỐC RỄ", "TRỌN MỘT KIẾP AN", "TĨNH GIỮA NHÂN GIAN"
+];
+
 const MOTIF_OPTIONS = [
-  "Đá và hoa + chữ Tâm An",
   "Hoa sen thủy mặc",
+  "Tre trúc thủy mặc",
+  "Đá và hoa",
   "Hoa sen rực rỡ",
-  "Thủy mặc tre trúc",
-  "Hoa sen thủy mặc + chữ Nẻo về sen nở",
   "Đèn theo ý tưởng của bạn?",
 ] as const;
 const WOOD_OPTIONS = ["Gỗ me tây", "Gỗ pơmu"] as const;
@@ -35,11 +41,10 @@ const SIZE_OPTIONS = ["Nhỏ (15x15x18cm)", "Lớn (18x18x25cm)"] as const;
 const LIGHT_OPTIONS = ["LED", "Nến tealight"] as const;
 
 const MOTIF_IMAGES: Record<string, typeof imgTaman> = {
-  "Đá và hoa + chữ Tâm An": imgTaman,
+  "Đá và hoa": imgTaman,
   "Hoa sen thủy mặc": imgSen,
   "Hoa sen rực rỡ": imgSenRucRo,
-  "Thủy mặc tre trúc": imgTre,
-  "Hoa sen thủy mặc + chữ Nẻo về sen nở": imgNeo,
+  "Tre trúc thủy mặc": imgTre,
 };
 
 const COMBO_PRICE = 777000;
@@ -61,9 +66,9 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
 function LampProductConfigurator({ productBase }: ConfiguratorProps) {
   const addItem = useCartStore((state) => state.addItem);
 
-  const [combo, setCombo] = useState<string>("Không");
+  const [textSelection, setTextSelection] = useState<string>(TEXT_OPTIONS[0]);
   const [size, setSize] = useState<string>("Nhỏ (15x15x18cm)");
-  const [motif, setMotif] = useState<string>("Đá và hoa + chữ Tâm An");
+  const [motif, setMotif] = useState<string>("Hoa sen thủy mặc");
   const [wood, setWood] = useState<string>("Gỗ me tây");
   const [light, setLight] = useState<string>("LED");
   const [quantity, setQuantity] = useState(1);
@@ -74,38 +79,23 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
 
     if (wood === "Gỗ me tây") {
       if (size === "Nhỏ (15x15x18cm)") {
-        if (combo === "Không") basePrice = 370000;
-        else if (combo === "Cặp đèn") basePrice = 699000;
-        else if (combo === "ĐT1") basePrice = 490000;
-        else if (combo === "ĐT3") basePrice = 799000;
+        basePrice = 370000;
       } else {
-        if (combo === "Không") basePrice = 520000;
-        else if (combo === "Cặp đèn") basePrice = 999000;
-        else if (combo === "ĐT1") basePrice = 640000;
-        else if (combo === "ĐT3") basePrice = 949000;
+        basePrice = 520000;
       }
     } else {
       // Gỗ pơmu
       if (size === "Nhỏ (15x15x18cm)") {
-        if (combo === "Không") basePrice = 555000;
-        else if (combo === "Cặp đèn") basePrice = 1049000;
-        else if (combo === "ĐT1") basePrice = 666000;
-        else if (combo === "ĐT3") basePrice = 999000;
+        basePrice = 555000;
       } else {
-        if (combo === "Không") basePrice = 777000;
-        else if (combo === "Cặp đèn") basePrice = 1409000;
-        else if (combo === "ĐT1") basePrice = 888000;
-        else if (combo === "ĐT3") basePrice = 1499000;
+        basePrice = 777000;
       }
     }
 
     let currentPrice = basePrice;
 
     if (motif === "Hoa sen rực rỡ") {
-      // 1499k for Pơmu Lớn ĐT3 already includes Hoa sen rực rỡ
-      if (!(wood === "Gỗ pơmu" && size === "Lớn (18x18x25cm)" && combo === "ĐT3")) {
-        currentPrice += 50000;
-      }
+      currentPrice += 50000;
     } else if (motif === "Đèn theo ý tưởng của bạn?") {
       currentPrice += 200000;
     }
@@ -115,22 +105,22 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
     }
 
     return currentPrice;
-  }, [combo, size, motif, wood, addText]);
+  }, [size, motif, wood, addText]);
 
   const totalPrice = price * quantity;
 
   const handleAddToCart = useCallback(() => {
-    const optionsStr = `Combo: ${COMBO_LABELS[combo] || combo} | Kích thước: ${size} | Họa tiết: ${motif} | Loại đế: ${wood} | Ánh sáng: ${light}${addText ? ' | Viết chữ thêm' : ''}`;
+    const optionsStr = `Chữ: ${textSelection} | Kích thước: ${size} | Họa tiết: ${motif} | Loại đế: ${wood} | Ánh sáng: ${light}${addText ? ' | Viết chữ thêm' : ''}`;
     const cartProduct = {
       ...productBase,
-      id: `${productBase.slug}-${combo}-${size}-${motif}-${wood}-${light}${addText ? '-addText' : ''}`.replace(/\s+/g, '-').toLowerCase(),
+      id: `${productBase.slug}-${textSelection}-${size}-${motif}-${wood}-${light}${addText ? '-addText' : ''}`.replace(/\s+/g, '-').toLowerCase(),
       price,
       name: `${productBase.name} (${size})`,
       options: optionsStr,
     };
     addItem(cartProduct, quantity);
     toast.success("Đã thêm vào giỏ hàng");
-  }, [addItem, combo, light, motif, price, productBase, quantity, size, wood, addText]);
+  }, [addItem, textSelection, light, motif, price, productBase, quantity, size, wood, addText]);
 
   const formattedTotal = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalPrice);
 
@@ -149,28 +139,26 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
 
       {/* Options */}
       <div className="space-y-5 sm:space-y-6">
-        {/* 1. Combo */}
+        {/* 1. Text Selection */}
         <fieldset>
           <div className="flex justify-between items-center mb-2 sm:mb-3">
-            <legend className="text-sm font-medium text-brand-brown font-serif uppercase tracking-wider">1. Set quà tặng</legend>
-            <span className="text-xs text-brand-terracotta font-medium bg-brand-terracotta/10 px-2 py-1 rounded">Tiết kiệm hơn</span>
+            <legend className="text-sm font-medium text-brand-brown font-serif uppercase tracking-wider">1. Lựa chọn chữ viết</legend>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-            {COMBO_OPTIONS.map((opt) => (
-              <button
-                key={opt}
-                type="button"
-                onClick={() => setCombo(opt)}
-                className={`relative py-2.5 sm:py-3 px-1 border rounded-lg text-sm transition-all duration-300 font-medium ${combo === opt
-                  ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown shadow-sm"
-                  : "border-gray-200 text-gray-500 hover:border-brand-yellow/50 hover:bg-brand-paper"
-                  }`}
-                aria-pressed={combo === opt}
-              >
-                {combo === opt && <motion.div layoutId="combo-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
-                <span className="relative z-10">{COMBO_LABELS[opt] || opt}</span>
-              </button>
-            ))}
+          <div className="relative">
+            <select
+              value={textSelection}
+              onChange={(e) => setTextSelection(e.target.value)}
+              className="w-full appearance-none bg-white border border-gray-200 text-gray-700 py-2.5 sm:py-3 px-4 pr-8 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-yellow focus:border-transparent font-medium"
+            >
+              {TEXT_OPTIONS.map((opt) => (
+                <option key={opt} value={opt}>{opt}</option>
+              ))}
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+              <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+              </svg>
+            </div>
           </div>
         </fieldset>
 

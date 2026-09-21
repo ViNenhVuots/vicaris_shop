@@ -68,7 +68,7 @@ export default function CheckoutForm() {
         date: new Date().toLocaleString("vi-VN", { timeZone: "Asia/Ho_Chi_Minh" })
       };
 
-      const scriptUrl = "https://script.google.com/macros/s/AKfycbx1w1wNDC-igSxTDQ_MPJdc0MYgyWVGSpEP7lunCErirPlSZLRKXtvl8tUT3l_SDLVf/exec";
+      const scriptUrl = "https://script.google.com/macros/s/AKfycbzIr3HkTnvLbmJubek57WfhcRg98ECcJdym00uK0ETUsbeve14r4yJekuXR9BZImdlU/exec";
       
       if (scriptUrl) {
         await fetch(scriptUrl, {

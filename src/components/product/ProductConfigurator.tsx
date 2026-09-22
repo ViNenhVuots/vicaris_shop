@@ -127,7 +127,7 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
   return (
     <div className="flex flex-col gap-6 sm:gap-8">
       <div className="text-xl sm:text-2xl font-bold text-brand-terracotta font-serif mb-1 sm:mb-2">
-        Giá: {new Intl.NumberFormat('vi-VN').format(370000)}đ - {new Intl.NumberFormat('vi-VN').format(1499000)}đ
+        Giá: {new Intl.NumberFormat('vi-VN').format(370000)}đ - {new Intl.NumberFormat('vi-VN').format(827000)}đ
       </div>
 
       {/* Short Description */}

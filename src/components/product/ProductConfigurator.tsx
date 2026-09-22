@@ -16,7 +16,7 @@ import imgTre from "../../../public/images/products/motifs/thuy mac tre truc.jpg
 import imgNeo from "../../../public/images/products/motifs/neo ve sen som.jpg";
 
 const TEXT_OPTIONS = [
-  "Listen deeply", "Peace Joy Hope", "Breathe and Smile", "Happiness is here and now", "Peace is every breath", "écoute avec compassion",
+  "Không", "Listen deeply", "Peace Joy Hope", "Breathe and Smile", "Happiness is here and now", "Peace is every breath", "écoute avec compassion",
   "Nẻo về sen nở", "Tay Thầy trong tay con", "Ân tình", "Đến đi thong dong", "Thong dong", "Mây trắng", "Tình Thầy", "Cõi lành trăng thu",
   "Ơn Thầy tái sinh", "Thở đi con", "Chánh niệm", "Mỉm cười", "Ngồi yên thấy rõ", "Muốn an được an", "Lòng không bận về", "Đã về đã tới",
   "Không bùn không sen", "Không diệt không sinh", "Hiện tại tuyệt vời", "Hiện pháp lạc trú", "Tâm tĩnh lặng chiếu", "Vô sự",
@@ -24,9 +24,9 @@ const TEXT_OPTIONS = [
   "Tâm an thế giới an", "Hiểu nghĩa là thương", "Thương như Bụt thương", "Ai cũng được thương", "Có Bụt trong ta", "Bình an là chốn hẹn",
   "Lượng cả bao dung", "Trồng một nụ cười", "Gieo trồng hạnh phúc", "Hạnh phúc bây giờ", "Hạnh phúc cầm tay", "Tùy duyên thuận pháp",
   "Biết ơn", "Thắp sáng nguồn tâm", "Quay về nương tựa", "Khơi nguồn yêu thương", "Sống tỉnh thức", "Tươi son bền sắt",
-  "TÂM AN", "MỘT NIỆM SÁNG TRONG", "TÂM RỖNG, LÒNG THÊNH", "THÔI TÌM, HÃY THẤY", "VỐN ĐÃ ĐỦ ĐẦY", "CHẠM VÀO SỰ SỐNG", "ĐƯỜNG VỀ TRONG TÂM",
-  "HIỂU ĐỂ THƯƠNG", "TRỌN VẸN PHÚT NÀY", "HIỆN TẠI LÀ QUÀ", "HẠNH PHÚC THẬT GẦN", "DỊU DÀNG VỚI MÌNH", "LẶNG NGHE TÂM MÌNH", "GIỮ LÒNG SÁNG TRONG",
-  "BUÔNG MỘT NIỆM SẦU", "NHÀ Ở BÊN TRONG", "MỘT LÒNG BIẾT ƠN", "MÂY ĐẾN, MÂY ĐI", "THƯƠNG TỪ GỐC RỄ", "TRỌN MỘT KIẾP AN", "TĨNH GIỮA NHÂN GIAN"
+  "Tâm an", "Một niệm sáng trong", "Tâm rỗng, lòng thênh", "Thôi tìm, hãy thấy", "Vốn đã đủ đầy", "Chạm vào sự sống", "Đường về trong tâm",
+  "Hiểu để thương", "Trọn vẹn phút này", "Hiện tại là quà", "Hạnh phúc thật gần", "Dịu dàng với mình", "Lặng nghe tâm mình", "Giữ lòng sáng trong",
+  "Buông một niệm sầu", "Nhà ở bên trong", "Một lòng biết ơn", "Mây đến, mây đi", "Thương từ gốc rễ", "Trọn một kiếp an", "Tĩnh giữa nhân gian"
 ];
 
 const MOTIF_OPTIONS = [

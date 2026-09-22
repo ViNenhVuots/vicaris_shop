@@ -17,7 +17,6 @@ import img9 from "../../../public/images/products/story/anh9.jpg";
 import img10 from "../../../public/images/products/story/anh10.jpg";
 import img11 from "../../../public/images/products/story/phu-kien-usb.jpg";
 import img12 from "../../../public/images/products/story/phu-kien-nen.jpg";
-import img14 from "../../../public/images/products/story/bang_gia_1.jpg";
 import img15 from "../../../public/images/products/story/bang_gia_2.jpg";
 
 interface StoryItem {
@@ -89,7 +88,7 @@ const STORIES: StoryItem[] = [
   },
   {
     isFullWidthImages: true,
-    images: [img10, img14, img15],
+    images: [img10, img15],
   },
 ];
 

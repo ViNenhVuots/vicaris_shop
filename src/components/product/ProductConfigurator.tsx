@@ -66,6 +66,7 @@ export default function ProductConfigurator({ productBase }: ConfiguratorProps) 
 function LampProductConfigurator({ productBase }: ConfiguratorProps) {
   const addItem = useCartStore((state) => state.addItem);
 
+  const [version, setVersion] = useState<string>("Tiêu chuẩn");
   const [textSelection, setTextSelection] = useState<string>(TEXT_OPTIONS[0]);
   const [size, setSize] = useState<string>("Nhỏ (15x15x18cm)");
   const [motif, setMotif] = useState<string>("Hoa sen thủy mặc");
@@ -75,6 +76,14 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
   const [addText, setAddText] = useState(false);
 
   const price = useMemo(() => {
+    if (version === "Thắp nến tri ân") {
+      let currentPrice = quantity < 50 ? 260000 : 240000;
+      if (addText) {
+        currentPrice += 50000;
+      }
+      return currentPrice;
+    }
+
     let basePrice = 370000;
 
     if (wood === "Gỗ me tây") {
@@ -86,9 +95,9 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
     } else {
       // Gỗ pơmu
       if (size === "Nhỏ (15x15x18cm)") {
-        basePrice = 555000;
+        basePrice = 470000;
       } else {
-        basePrice = 777000;
+        basePrice = 620000;
       }
     }
 
@@ -105,22 +114,26 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
     }
 
     return currentPrice;
-  }, [size, motif, wood, addText]);
+  }, [version, size, motif, wood, addText, quantity]);
 
   const totalPrice = price * quantity;
 
   const handleAddToCart = useCallback(() => {
-    const optionsStr = `Chữ: ${textSelection} | Kích thước: ${size} | Họa tiết: ${motif} | Loại đế: ${wood} | Ánh sáng: ${light}${addText ? ' | Viết chữ thêm' : ''}`;
+    const isTriAn = version === "Thắp nến tri ân";
+    const optionsStr = isTriAn 
+      ? `Phiên bản: Thắp nến tri ân | Kích thước: Nhỏ | Loại đế: Gỗ me tây | Ánh sáng: Nến tealight${addText ? ' | Viết chữ thêm: ' + textSelection : ''}`
+      : `Chữ: ${textSelection} | Kích thước: ${size} | Họa tiết: ${motif} | Loại đế: ${wood} | Ánh sáng: ${light}${addText ? ' | Viết chữ thêm' : ''}`;
+      
     const cartProduct = {
       ...productBase,
-      id: `${productBase.slug}-${textSelection}-${size}-${motif}-${wood}-${light}${addText ? '-addText' : ''}`.replace(/\s+/g, '-').toLowerCase(),
+      id: `${productBase.slug}-${version}-${isTriAn ? '' : textSelection + size + motif + wood + light}${addText ? '-addText' : ''}`.replace(/\s+/g, '-').toLowerCase(),
       price,
-      name: `${productBase.name} (${size})`,
+      name: isTriAn ? `${productBase.name} (Thắp nến tri ân)` : `${productBase.name} (${size})`,
       options: optionsStr,
     };
     addItem(cartProduct, quantity);
     toast.success("Đã thêm vào giỏ hàng");
-  }, [addItem, textSelection, light, motif, price, productBase, quantity, size, wood, addText]);
+  }, [addItem, version, textSelection, light, motif, price, productBase, quantity, size, wood, addText]);
 
   const formattedTotal = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalPrice);
 
@@ -139,6 +152,40 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
 
       {/* Options */}
       <div className="space-y-5 sm:space-y-6">
+        {/* 0. Phiên bản */}
+        <fieldset>
+          <div className="flex justify-between items-center mb-2 sm:mb-3">
+            <legend className="text-sm font-medium text-brand-brown font-serif uppercase tracking-wider">Phiên bản</legend>
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            {["Tiêu chuẩn", "Thắp nến tri ân"].map((opt) => (
+              <button
+                key={opt}
+                type="button"
+                onClick={() => setVersion(opt)}
+                className={`relative py-2.5 sm:py-3 px-3 sm:px-4 border rounded-lg text-xs sm:text-sm text-center transition-all duration-300 ${version === opt
+                  ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium shadow-sm"
+                  : "border-gray-200 text-gray-600 hover:border-brand-yellow/50 hover:bg-brand-paper"
+                  }`}
+                aria-pressed={version === opt}
+              >
+                {version === opt && <motion.div layoutId="version-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
+                <span className="relative z-10">{opt}</span>
+              </button>
+            ))}
+          </div>
+        </fieldset>
+
+        {version === "Thắp nến tri ân" && (
+          <div className="p-4 bg-brand-yellow/10 rounded-lg text-sm text-brand-brown/80">
+            <strong>Đèn thắp nến tri ân</strong> bao gồm: Đế gỗ me tây, thân đèn cỡ nhỏ (15x15x18cm), không họa tiết, kèm nến tealight. Giá ưu đãi đặc biệt: 
+            <ul className="list-disc ml-5 mt-1">
+              <li>Dưới 50 đèn: 260.000đ/đèn</li>
+              <li>Từ 50 đèn: 240.000đ/đèn</li>
+            </ul>
+          </div>
+        )}
+
         {/* 1. Text Selection */}
         <fieldset>
           <div className="flex justify-between items-center mb-2 sm:mb-3">
@@ -163,7 +210,8 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
         </fieldset>
 
         {/* 2. Motif */}
-        <fieldset>
+        {version === "Tiêu chuẩn" && (
+          <fieldset>
           <legend className="block text-sm font-medium text-brand-brown mb-2 sm:mb-3 font-serif uppercase tracking-wider">2. Họa tiết tranh</legend>
           <div className="grid grid-cols-1 gap-2">
             {MOTIF_OPTIONS.map((opt) => {
@@ -223,11 +271,14 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
             </label>
           </div>
         </fieldset>
+        )}
 
         {/* Details Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-          {/* 3. Wood */}
-          <fieldset>
+          {version === "Tiêu chuẩn" && (
+            <>
+              {/* 3. Wood */}
+              <fieldset>
             <legend className="block text-sm font-medium text-brand-brown mb-2 sm:mb-3 font-serif uppercase tracking-wider">3. Chất liệu đế</legend>
             <div className="grid grid-cols-2 gap-2">
               {WOOD_OPTIONS.map((opt) => (
@@ -271,26 +322,28 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
           </fieldset>
 
           {/* 5. Light */}
-          <fieldset className="sm:col-span-2">
-            <legend className="block text-sm font-medium text-brand-brown mb-2 sm:mb-3 font-serif uppercase tracking-wider">5. Ánh sáng</legend>
-            <div className="grid grid-cols-2 gap-2">
-              {LIGHT_OPTIONS.map((opt) => (
-                <button
-                  key={opt}
-                  type="button"
-                  onClick={() => setLight(opt)}
-                  className={`relative py-2.5 sm:py-3 px-2 sm:px-3 border rounded-lg text-xs sm:text-sm transition-all duration-300 ${light === opt
-                    ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium"
-                    : "border-gray-200 text-gray-500 hover:border-brand-yellow/50"
-                    }`}
-                  aria-pressed={light === opt}
-                >
-                  {light === opt && <motion.div layoutId="light-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
-                  <span className="relative z-10">{opt}</span>
-                </button>
-              ))}
-            </div>
-          </fieldset>
+              <fieldset className="sm:col-span-2">
+                <legend className="block text-sm font-medium text-brand-brown mb-2 sm:mb-3 font-serif uppercase tracking-wider">5. Ánh sáng</legend>
+                <div className="grid grid-cols-2 gap-2">
+                  {LIGHT_OPTIONS.map((opt) => (
+                    <button
+                      key={opt}
+                      type="button"
+                      onClick={() => setLight(opt)}
+                      className={`relative py-2.5 sm:py-3 px-2 sm:px-3 border rounded-lg text-xs sm:text-sm transition-all duration-300 ${light === opt
+                        ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium"
+                        : "border-gray-200 text-gray-500 hover:border-brand-yellow/50"
+                        }`}
+                      aria-pressed={light === opt}
+                    >
+                      {light === opt && <motion.div layoutId="light-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
+                      <span className="relative z-10">{opt}</span>
+                    </button>
+                  ))}
+                </div>
+              </fieldset>
+            </>
+          )}
         </div>
       </div>
 

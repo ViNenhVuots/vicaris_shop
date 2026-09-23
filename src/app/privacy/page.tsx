@@ -1,7 +1,7 @@
 import { ShieldCheck } from "lucide-react";
 
 export const metadata = {
-  title: "Bảo mật thông tin | Đèn thiền Mực, trà và thi",
+  title: "Bảo mật thông tin | Mực, trà và thi",
   description: "Chính sách bảo mật thông tin khách hàng của Đèn thiền Mực, trà và thi.",
 };
 

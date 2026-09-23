@@ -1,7 +1,7 @@
 import { Truck, Clock, MapPin, ShieldCheck } from "lucide-react";
 
 export const metadata = {
-  title: "Chính sách vận chuyển | Đèn thiền Mực, trà và thi",
+  title: "Chính sách vận chuyển | Mực, trà và thi",
   description: "Tìm hiểu chính sách vận chuyển của Đèn thiền Mực, trà và thi.",
 };
 

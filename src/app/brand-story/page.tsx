@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Câu chuyện thương hiệu",
   description: "Từ tình huynh đệ đến ánh sáng chữa lành – Câu chuyện ra đời của đèn thiền Mực, trà và thi.",
   openGraph: {
-    title: "Câu chuyện thương hiệu | Đèn thiền Mực, trà và thi",
+    title: "Câu chuyện thương hiệu | Mực, trà và thi",
     description: "Từ tình huynh đệ đến ánh sáng chữa lành – Câu chuyện ra đời của đèn thiền Mực, trà và thi.",
   },
 };

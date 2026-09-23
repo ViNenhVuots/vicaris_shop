@@ -14,7 +14,7 @@ import img6 from "../../../public/images/products/story/anh6.jpg";
 import img7 from "../../../public/images/products/story/anh7.jpg";
 import img8 from "../../../public/images/products/story/anh8.jpg";
 import img9 from "../../../public/images/products/story/anh9.jpg";
-import img10 from "../../../public/images/products/story/anh10.jpg";
+import img10 from "../../../public/images/products/story/bang-gia-den-thien-muc-tra-va-thi-quy-vicaris.jpg";
 import img11 from "../../../public/images/products/story/phu-kien-usb.jpg";
 import img12 from "../../../public/images/products/story/phu-kien-nen.jpg";
 import img15 from "../../../public/images/products/story/bang_gia_2.jpg";

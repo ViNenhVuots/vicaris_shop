@@ -1,7 +1,7 @@
 import { RotateCcw, CheckCircle2, XCircle } from "lucide-react";
 
 export const metadata = {
-  title: "Chính sách đổi trả | Đèn thiền Mực, trà và thi",
+  title: "Chính sách đổi trả | Mực, trà và thi",
   description: "Tìm hiểu chính sách đổi trả sản phẩm của Đèn thiền Mực, trà và thi.",
 };
 

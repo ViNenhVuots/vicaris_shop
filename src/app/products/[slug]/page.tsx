@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: product.name,
     description: product.description,
     openGraph: {
-      title: `${product.name} | Đèn thiền Mực, trà và thi`,
+      title: `${product.name} | Mực, trà và thi`,
       description: product.description,
       images: [
         { 

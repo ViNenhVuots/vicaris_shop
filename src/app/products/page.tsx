@@ -3,7 +3,7 @@ import { getProducts } from "@/services/productService";
 import { Suspense } from "react";
 
 export const metadata = {
-  title: "Sản Phẩm | Đèn thiền Mực, trà và thi",
+  title: "Sản Phẩm | Mực, trà và thi",
   description: "Khám phá các sản phẩm đèn thiền và combo quà tặng cao cấp từ Quỹ Bảo trợ giáo dục Vicaris.",
 };
 

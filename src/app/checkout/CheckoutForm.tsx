@@ -1,6 +1,7 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
+import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useCartStore } from "@/store/cartStore";
@@ -32,6 +33,7 @@ export default function CheckoutForm() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<CheckoutFormValues>({
     resolver: zodResolver(checkoutSchema),
@@ -39,6 +41,8 @@ export default function CheckoutForm() {
       paymentMethod: "cod"
     }
   });
+
+  const paymentMethod = useWatch({ control, name: "paymentMethod" });
 
   const onSubmit = async (data: CheckoutFormValues) => {
     if (items.length === 0) {
@@ -206,6 +210,21 @@ export default function CheckoutForm() {
           <span className="ml-3 font-medium text-gray-700">Chuyển khoản ngân hàng</span>
         </label>
       </div>
+
+      {paymentMethod === "banking" && (
+        <div className="mb-8 p-4 border border-brand-yellow/30 bg-brand-yellow/10 rounded-lg text-center">
+          <p className="font-medium text-brand-brown mb-2 font-serif">Mã QR Thanh Toán</p>
+          <div className="relative w-full max-w-[280px] aspect-[3/4] mx-auto mb-3">
+            <Image 
+              src="/images/MaQR_thanh_toan.jpg" 
+              alt="Mã QR thanh toán" 
+              fill
+              className="object-contain rounded-lg"
+            />
+          </div>
+          <p className="text-sm text-brand-ink/80 italic">Vui lòng ghi chú tên và số điện thoại khi chuyển khoản để chúng tôi xác nhận nhanh chóng!</p>
+        </div>
+      )}
 
       <button
         type="submit"

@@ -163,12 +163,7 @@ export default function ProductWoodBoardConfigurator({ productBase }: Props) {
             </div>
           </div>
           <div className="text-xs sm:text-sm text-brand-ink/70 flex flex-col gap-1.5 sm:gap-2 mb-3 sm:mb-4">
-            <div className="flex items-center gap-2">
-              <Truck size={16} className="text-brand-brown shrink-0" aria-hidden="true" />
-              <span>
-                Miễn phí vận chuyển cho đơn từ {new Intl.NumberFormat("vi-VN").format(FREE_SHIPPING_THRESHOLD / 1000)}k (từ 2 - 5 ngày)
-              </span>
-            </div>
+
             <p>
               Thiết kế theo yêu cầu về nội dung, logo, nét chữ, màu chữ và kích thước.
             </p>

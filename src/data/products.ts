@@ -36,6 +36,8 @@ export const products: ProductData[] = [
     price: 370000,
     image: "/images/products/p1.jpg",
     images: [
+      "/images/products/den-thien/album/anh001.jpg",
+      "/images/products/den-thien/album/anh01.jpg",
       "/images/products/den-thien/album/anh1.jpg",
       "/images/products/den-thien/album/anh2.jpg",
       "/images/products/den-thien/album/anh3.jpg",

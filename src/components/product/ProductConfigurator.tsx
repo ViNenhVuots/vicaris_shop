@@ -178,7 +178,7 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
 
         {version === "Thắp nến tri ân" && (
           <div className="p-4 bg-brand-yellow/10 rounded-lg text-sm text-brand-brown/80">
-            <strong>Đèn thắp nến tri ân</strong> bao gồm: Đế gỗ me tây, thân đèn cỡ nhỏ (15x15x18cm), không họa tiết, kèm nến tealight. Giá ưu đãi đặc biệt: 
+            <strong>Đèn thắp nến tri ân</strong> bao gồm: Đế gỗ me tây, thân đèn cỡ nhỏ (15x15x18cm), vẽ hoa sen thủy mặc, kèm nến tealight. Giá ưu đãi đặc biệt: 
             <ul className="list-disc ml-5 mt-1">
               <li>Dưới 50 đèn: 260.000đ/đèn</li>
               <li>Từ 50 đèn: 240.000đ/đèn</li>
@@ -382,10 +382,6 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
             </div>
           </div>
           <div className="text-xs sm:text-sm text-brand-ink/70 flex flex-col gap-1.5 sm:gap-2 mb-3 sm:mb-4">
-            <div className="flex items-center gap-2">
-              <Truck size={16} className="text-brand-brown shrink-0" aria-hidden="true" />
-              <span>Miễn phí vận chuyển cho đơn từ {new Intl.NumberFormat('vi-VN').format(FREE_SHIPPING_THRESHOLD / 1000)}k (từ 2 - 5 ngày)</span>
-            </div>
             <div className="flex items-center gap-2 text-green-600 font-medium">
               <CheckCircle2 size={16} aria-hidden="true" />
               <span>Còn hàng — Giao hàng ngay lập tức</span>

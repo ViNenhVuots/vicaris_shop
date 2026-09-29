@@ -176,9 +176,7 @@ export default function CartDrawer() {
                     {formattedTotal}
                   </span>
                 </div>
-                <p className="text-xs text-brand-ink/60 mb-4 sm:mb-6">
-                  Miễn phí vận chuyển cho đơn từ 699.000đ.
-                </p>
+
                 <Link
                   href="/checkout"
                   onClick={toggleCart}

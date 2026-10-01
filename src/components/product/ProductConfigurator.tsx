@@ -140,7 +140,7 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
   return (
     <div className="flex flex-col gap-6 sm:gap-8">
       <div className="text-xl sm:text-2xl font-bold text-brand-terracotta font-serif mb-1 sm:mb-2">
-        Giá: {new Intl.NumberFormat('vi-VN').format(370000)}đ - {new Intl.NumberFormat('vi-VN').format(827000)}đ
+        Giá: {new Intl.NumberFormat('vi-VN').format(240000)}đ - {new Intl.NumberFormat('vi-VN').format(670000)}đ
       </div>
 
       {/* Short Description */}
@@ -175,6 +175,12 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
             ))}
           </div>
         </fieldset>
+
+        {version === "Tiêu chuẩn" && (
+          <div className="p-4 bg-brand-yellow/10 rounded-lg text-sm text-brand-brown/80 mb-3">
+            <strong>Tiêu chuẩn:</strong> Hộp quà tặng cao cấp, bao gồm ống nến tealight thủ công hoặc đèn led tiện dụng.
+          </div>
+        )}
 
         {version === "Thắp nến tri ân" && (
           <div className="p-4 bg-brand-yellow/10 rounded-lg text-sm text-brand-brown/80">

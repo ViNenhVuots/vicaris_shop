@@ -53,13 +53,23 @@ export default function ProductVideo() {
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-brand-brown">Không gian an tịnh</h2>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 max-w-6xl mx-auto">
-          {/* Intro Video */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-12 max-w-6xl mx-auto">
+          {/* Intro Video (Facebook) */}
           <div className="space-y-3 sm:space-y-4">
             <h3 className="text-lg sm:text-xl font-serif font-bold text-brand-brown">Video giới thiệu</h3>
             <LazyIframe 
               src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1370249934996219&show_text=false" 
-              title="Video giới thiệu đèn thiền"
+              title="Video giới thiệu đèn thiền (FB)"
+              aspectClass="aspect-[9/16] max-w-[360px]"
+            />
+          </div>
+
+          {/* Intro Video (YouTube) */}
+          <div className="space-y-3 sm:space-y-4">
+            <h3 className="text-lg sm:text-xl font-serif font-bold text-brand-brown">Video giới thiệu</h3>
+            <LazyIframe 
+              src="https://www.youtube.com/embed/gVmFmab97fs" 
+              title="Video giới thiệu đèn thiền (YT)"
               aspectClass="aspect-[9/16] max-w-[360px]"
             />
           </div>

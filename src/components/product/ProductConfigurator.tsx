@@ -120,10 +120,10 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
 
   const handleAddToCart = useCallback(() => {
     const isTriAn = version === "Thắp nến tri ân";
-    const optionsStr = isTriAn 
+    const optionsStr = isTriAn
       ? `Phiên bản: Thắp nến tri ân | Kích thước: Nhỏ | Loại đế: Gỗ me tây | Ánh sáng: Nến tealight${addText ? ' | Viết chữ thêm: ' + textSelection : ''}`
       : `Chữ: ${textSelection} | Kích thước: ${size} | Họa tiết: ${motif} | Loại đế: ${wood} | Ánh sáng: ${light}${addText ? ' | Viết chữ thêm' : ''}`;
-      
+
     const cartProduct = {
       ...productBase,
       id: `${productBase.slug}-${version}-${isTriAn ? '' : textSelection + size + motif + wood + light}${addText ? '-addText' : ''}`.replace(/\s+/g, '-').toLowerCase(),
@@ -184,7 +184,7 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
 
         {version === "Thắp nến tri ân" && (
           <div className="p-4 bg-brand-yellow/10 rounded-lg text-sm text-brand-brown/80">
-            <strong>Đèn thắp nến tri ân</strong> bao gồm: Đế gỗ me tây, thân đèn cỡ nhỏ (15x15x18cm), vẽ hoa sen thủy mặc, kèm nến tealight. Giá ưu đãi đặc biệt: 
+            <strong>Đèn thắp nến tri ân</strong> bao gồm: Đế gỗ me tây, thân đèn cỡ nhỏ (15x15x18cm), vẽ hoa sen thủy mặc, kèm nến tealight. Giá ưu đãi đặc biệt:
             <ul className="list-disc ml-5 mt-1">
               <li>Dưới 50 đèn: 260.000đ/đèn</li>
               <li>Từ 50 đèn: 240.000đ/đèn</li>
@@ -218,65 +218,65 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
         {/* 2. Motif */}
         {version === "Tiêu chuẩn" && (
           <fieldset>
-          <legend className="block text-sm font-medium text-brand-brown mb-2 sm:mb-3 font-serif uppercase tracking-wider">2. Họa tiết tranh</legend>
-          <div className="grid grid-cols-1 gap-2">
-            {MOTIF_OPTIONS.map((opt) => {
-              return (
-                <button
-                  key={opt}
-                  type="button"
-                  onClick={() => setMotif(opt)}
-                  className={`relative py-2.5 sm:py-3 px-3 sm:px-4 border rounded-lg text-xs sm:text-sm text-left transition-all duration-300 ${motif === opt
-                    ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium shadow-sm"
-                    : "border-gray-200 text-gray-600 hover:border-brand-yellow/50 hover:bg-brand-paper"
-                    }`}
-                  aria-pressed={motif === opt}
-                >
-                  {motif === opt && <motion.div layoutId="motif-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
-                  <span className="relative z-10 flex items-center justify-between gap-2">
-                    <span className="truncate">{opt}</span>
-                    {motif === opt && <Check size={16} className="text-brand-terracotta shrink-0" aria-hidden="true" />}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+            <legend className="block text-sm font-medium text-brand-brown mb-2 sm:mb-3 font-serif uppercase tracking-wider">2. Họa tiết tranh</legend>
+            <div className="grid grid-cols-1 gap-2">
+              {MOTIF_OPTIONS.map((opt) => {
+                return (
+                  <button
+                    key={opt}
+                    type="button"
+                    onClick={() => setMotif(opt)}
+                    className={`relative py-2.5 sm:py-3 px-3 sm:px-4 border rounded-lg text-xs sm:text-sm text-left transition-all duration-300 ${motif === opt
+                      ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium shadow-sm"
+                      : "border-gray-200 text-gray-600 hover:border-brand-yellow/50 hover:bg-brand-paper"
+                      }`}
+                    aria-pressed={motif === opt}
+                  >
+                    {motif === opt && <motion.div layoutId="motif-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
+                    <span className="relative z-10 flex items-center justify-between gap-2">
+                      <span className="truncate">{opt}</span>
+                      {motif === opt && <Check size={16} className="text-brand-terracotta shrink-0" aria-hidden="true" />}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
 
-          {MOTIF_IMAGES[motif] && (
-            <motion.div
-              key={motif}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-              className="mt-3 sm:mt-4 rounded-xl overflow-hidden shadow-sm border border-brand-brown/10 w-full"
-            >
-              <Image
-                src={MOTIF_IMAGES[motif]}
-                alt={`Họa tiết ${motif}`}
-                quality={70}
-                className="w-full h-auto"
-                sizes="(max-width: 768px) 100vw, 50vw"
-                placeholder="blur"
-              />
-            </motion.div>
-          )}
-
-          {/* Additional Options */}
-          <div className="mt-4">
-            <label className="flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-all duration-300 hover:bg-brand-paper">
-              <div className="relative flex items-center">
-                <input
-                  type="checkbox"
-                  checked={addText}
-                  onChange={(e) => setAddText(e.target.checked)}
-                  className="peer h-5 w-5 cursor-pointer appearance-none rounded border border-gray-300 checked:border-brand-yellow checked:bg-brand-yellow transition-all"
+            {MOTIF_IMAGES[motif] && (
+              <motion.div
+                key={motif}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                className="mt-3 sm:mt-4 rounded-xl overflow-hidden shadow-sm border border-brand-brown/10 w-full"
+              >
+                <Image
+                  src={MOTIF_IMAGES[motif]}
+                  alt={`Họa tiết ${motif}`}
+                  quality={70}
+                  className="w-full h-auto"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  placeholder="blur"
                 />
-                <Check size={14} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-brand-brown opacity-0 peer-checked:opacity-100 pointer-events-none" strokeWidth={3} />
-              </div>
-              <span className="text-sm text-gray-700 font-medium">Viết chữ thêm (50.000đ)</span>
-            </label>
-          </div>
-        </fieldset>
+              </motion.div>
+            )}
+
+            {/* Additional Options */}
+            <div className="mt-4">
+              <label className="flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-all duration-300 hover:bg-brand-paper">
+                <div className="relative flex items-center">
+                  <input
+                    type="checkbox"
+                    checked={addText}
+                    onChange={(e) => setAddText(e.target.checked)}
+                    className="peer h-5 w-5 cursor-pointer appearance-none rounded border border-gray-300 checked:border-brand-yellow checked:bg-brand-yellow transition-all"
+                  />
+                  <Check size={14} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-brand-brown opacity-0 peer-checked:opacity-100 pointer-events-none" strokeWidth={3} />
+                </div>
+                <span className="text-sm text-gray-700 font-medium">Viết chữ thêm (50.000đ)</span>
+              </label>
+            </div>
+          </fieldset>
         )}
 
         {/* Details Grid */}
@@ -285,49 +285,49 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
             <>
               {/* 3. Wood */}
               <fieldset>
-            <legend className="block text-sm font-medium text-brand-brown mb-2 sm:mb-3 font-serif uppercase tracking-wider">3. Chất liệu đế</legend>
-            <div className="grid grid-cols-2 gap-2">
-              {WOOD_OPTIONS.map((opt) => (
-                <button
-                  key={opt}
-                  type="button"
-                  onClick={() => setWood(opt)}
-                  className={`relative py-2.5 sm:py-3 px-2 sm:px-3 border rounded-lg text-xs sm:text-sm transition-all duration-300 ${wood === opt
-                    ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium"
-                    : "border-gray-200 text-gray-500 hover:border-brand-yellow/50"
-                    }`}
-                  aria-pressed={wood === opt}
-                >
-                  {wood === opt && <motion.div layoutId="wood-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
-                  <span className="relative z-10">{opt}</span>
-                </button>
-              ))}
-            </div>
-          </fieldset>
+                <legend className="block text-sm font-medium text-brand-brown mb-2 sm:mb-3 font-serif uppercase tracking-wider">3. Chất liệu đế</legend>
+                <div className="grid grid-cols-2 gap-2">
+                  {WOOD_OPTIONS.map((opt) => (
+                    <button
+                      key={opt}
+                      type="button"
+                      onClick={() => setWood(opt)}
+                      className={`relative py-2.5 sm:py-3 px-2 sm:px-3 border rounded-lg text-xs sm:text-sm transition-all duration-300 ${wood === opt
+                        ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium"
+                        : "border-gray-200 text-gray-500 hover:border-brand-yellow/50"
+                        }`}
+                      aria-pressed={wood === opt}
+                    >
+                      {wood === opt && <motion.div layoutId="wood-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
+                      <span className="relative z-10">{opt}</span>
+                    </button>
+                  ))}
+                </div>
+              </fieldset>
 
-          {/* 4. Size */}
-          <fieldset>
-            <legend className="block text-sm font-medium text-brand-brown mb-2 sm:mb-3 font-serif uppercase tracking-wider">4. Kích thước</legend>
-            <div className="grid grid-cols-1 gap-2">
-              {SIZE_OPTIONS.map((opt) => (
-                <button
-                  key={opt}
-                  type="button"
-                  onClick={() => setSize(opt)}
-                  className={`relative py-2.5 sm:py-3 px-2 sm:px-3 border rounded-lg text-xs sm:text-sm transition-all duration-300 ${size === opt
-                    ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium"
-                    : "border-gray-200 text-gray-500 hover:border-brand-yellow/50"
-                    }`}
-                  aria-pressed={size === opt}
-                >
-                  {size === opt && <motion.div layoutId="size-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
-                  <span className="relative z-10">{opt}</span>
-                </button>
-              ))}
-            </div>
-          </fieldset>
+              {/* 4. Size */}
+              <fieldset>
+                <legend className="block text-sm font-medium text-brand-brown mb-2 sm:mb-3 font-serif uppercase tracking-wider">4. Kích thước</legend>
+                <div className="grid grid-cols-1 gap-2">
+                  {SIZE_OPTIONS.map((opt) => (
+                    <button
+                      key={opt}
+                      type="button"
+                      onClick={() => setSize(opt)}
+                      className={`relative py-2.5 sm:py-3 px-2 sm:px-3 border rounded-lg text-xs sm:text-sm transition-all duration-300 ${size === opt
+                        ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium"
+                        : "border-gray-200 text-gray-500 hover:border-brand-yellow/50"
+                        }`}
+                      aria-pressed={size === opt}
+                    >
+                      {size === opt && <motion.div layoutId="size-active" className="absolute inset-0 border-2 border-brand-yellow rounded-lg" />}
+                      <span className="relative z-10">{opt}</span>
+                    </button>
+                  ))}
+                </div>
+              </fieldset>
 
-          {/* 5. Light */}
+              {/* 5. Light */}
               <fieldset className="sm:col-span-2">
                 <legend className="block text-sm font-medium text-brand-brown mb-2 sm:mb-3 font-serif uppercase tracking-wider">5. Ánh sáng</legend>
                 <div className="grid grid-cols-2 gap-2">

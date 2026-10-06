@@ -76,11 +76,10 @@ export default function ProductWoodBoardConfigurator({ productBase }: Props) {
                 key={opt.id}
                 type="button"
                 onClick={() => setSelectedId(opt.id)}
-                className={`relative py-2.5 sm:py-3 px-3 sm:px-4 border rounded-lg text-xs sm:text-sm text-left transition-all duration-300 ${
-                  active
+                className={`relative py-2.5 sm:py-3 px-3 sm:px-4 border rounded-lg text-xs sm:text-sm text-left transition-all duration-300 ${active
                     ? "border-brand-yellow bg-brand-yellow/10 text-brand-brown font-medium shadow-sm"
                     : "border-gray-200 text-gray-600 hover:border-brand-yellow/50 hover:bg-brand-paper"
-                }`}
+                  }`}
                 aria-pressed={active}
               >
                 {active && (

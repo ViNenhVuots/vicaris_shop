@@ -12,7 +12,6 @@ import { Loader2 } from "lucide-react";
 
 const checkoutSchema = z.object({
   fullName: z.string().min(2, "Họ tên phải có ít nhất 2 ký tự"),
-  email: z.string().email("Email không hợp lệ"),
   phone: z.string().regex(/^(0|\+84)[35789][0-9]{8}$/, "Số điện thoại không hợp lệ"),
   address: z.string().min(10, "Địa chỉ phải có ít nhất 10 ký tự"),
   city: z.string().min(2, "Vui lòng nhập Tỉnh/Thành phố"),
@@ -62,7 +61,7 @@ export default function CheckoutForm() {
 
       const payload = {
         fullName: data.fullName,
-        email: data.email,
+        email: "",
         phone: data.phone,
         address: `${data.address}, ${data.ward}, ${data.district}, ${data.city}`,
         notes: data.notes || "",
@@ -115,25 +114,14 @@ export default function CheckoutForm() {
           {errors.fullName && <p className="mt-1 text-sm text-red-500">{errors.fullName.message}</p>}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-            <input
-              {...register("email")}
-              className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-brand-terracotta ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
-              placeholder="Nhập email"
-            />
-            {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>}
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Số điện thoại</label>
-            <input
-              {...register("phone")}
-              className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-brand-terracotta ${errors.phone ? 'border-red-500' : 'border-gray-300'}`}
-              placeholder="Nhập số điện thoại"
-            />
-            {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone.message}</p>}
-          </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Số điện thoại</label>
+          <input
+            {...register("phone")}
+            className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-brand-terracotta ${errors.phone ? 'border-red-500' : 'border-gray-300'}`}
+            placeholder="Nhập số điện thoại"
+          />
+          {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone.message}</p>}
         </div>
 
         <div>

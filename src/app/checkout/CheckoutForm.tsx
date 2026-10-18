@@ -15,7 +15,6 @@ const checkoutSchema = z.object({
   phone: z.string().regex(/^(0|\+84)[35789][0-9]{8}$/, "Số điện thoại không hợp lệ"),
   address: z.string().min(10, "Địa chỉ phải có ít nhất 10 ký tự"),
   city: z.string().min(2, "Vui lòng nhập Tỉnh/Thành phố"),
-  district: z.string().min(2, "Vui lòng nhập Quận/Huyện"),
   ward: z.string().min(2, "Vui lòng nhập Phường/Xã"),
   notes: z.string().optional(),
   paymentMethod: z.enum(["cod", "banking"])
@@ -63,7 +62,7 @@ export default function CheckoutForm() {
         fullName: data.fullName,
         email: "",
         phone: data.phone,
-        address: `${data.address}, ${data.ward}, ${data.district}, ${data.city}`,
+        address: `${data.address}, ${data.ward}, ${data.city}`,
         notes: data.notes || "",
         paymentMethod: data.paymentMethod,
         orderDetails: orderDetails,
@@ -134,7 +133,7 @@ export default function CheckoutForm() {
           {errors.address && <p className="mt-1 text-sm text-red-500">{errors.address.message}</p>}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Tỉnh/Thành phố</label>
             <input
@@ -143,15 +142,6 @@ export default function CheckoutForm() {
               placeholder="Tỉnh/Thành phố"
             />
             {errors.city && <p className="mt-1 text-sm text-red-500">{errors.city.message}</p>}
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Quận/Huyện</label>
-            <input
-              {...register("district")}
-              className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-brand-terracotta ${errors.district ? 'border-red-500' : 'border-gray-300'}`}
-              placeholder="Quận/Huyện"
-            />
-            {errors.district && <p className="mt-1 text-sm text-red-500">{errors.district.message}</p>}
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Phường/Xã</label>

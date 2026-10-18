@@ -76,7 +76,7 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
   const [addText, setAddText] = useState(false);
 
   const price = useMemo(() => {
-    if (version === "Thắp nến tri ân") {
+    if (version === "Thắp nến") {
       let currentPrice = quantity < 50 ? 260000 : 240000;
       if (addText) {
         currentPrice += 50000;
@@ -119,16 +119,16 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
   const totalPrice = price * quantity;
 
   const handleAddToCart = useCallback(() => {
-    const isTriAn = version === "Thắp nến tri ân";
-    const optionsStr = isTriAn
-      ? `Phiên bản: Thắp nến tri ân | Kích thước: Nhỏ | Loại đế: Gỗ me tây | Ánh sáng: Nến tealight${addText ? ' | Viết chữ thêm: ' + textSelection : ''}`
+    const isThapNen = version === "Thắp nến";
+    const optionsStr = isThapNen
+      ? `Phiên bản: Thắp nến | Kích thước: Nhỏ | Loại đế: Gỗ me tây | Ánh sáng: Nến tealight${addText ? ' | Viết chữ thêm: ' + textSelection : ''}`
       : `Chữ: ${textSelection} | Kích thước: ${size} | Họa tiết: ${motif} | Loại đế: ${wood} | Ánh sáng: ${light}${addText ? ' | Viết chữ thêm' : ''}`;
 
     const cartProduct = {
       ...productBase,
-      id: `${productBase.slug}-${version}-${isTriAn ? '' : textSelection + size + motif + wood + light}${addText ? '-addText' : ''}`.replace(/\s+/g, '-').toLowerCase(),
+      id: `${productBase.slug}-${version}-${isThapNen ? '' : textSelection + size + motif + wood + light}${addText ? '-addText' : ''}`.replace(/\s+/g, '-').toLowerCase(),
       price,
-      name: isTriAn ? `${productBase.name} (Thắp nến tri ân)` : `${productBase.name} (${size})`,
+      name: isThapNen ? `${productBase.name} (Thắp nến)` : `${productBase.name} (${size})`,
       options: optionsStr,
     };
     addItem(cartProduct, quantity);
@@ -158,7 +158,7 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
             <legend className="text-sm font-medium text-brand-brown font-serif uppercase tracking-wider">Phiên bản</legend>
           </div>
           <div className="grid grid-cols-2 gap-2">
-            {["Tiêu chuẩn", "Thắp nến tri ân"].map((opt) => (
+            {["Tiêu chuẩn", "Thắp nến"].map((opt) => (
               <button
                 key={opt}
                 type="button"
@@ -182,9 +182,9 @@ function LampProductConfigurator({ productBase }: ConfiguratorProps) {
           </div>
         )}
 
-        {version === "Thắp nến tri ân" && (
+        {version === "Thắp nến" && (
           <div className="p-4 bg-brand-yellow/10 rounded-lg text-sm text-brand-brown/80">
-            <strong>Đèn thắp nến tri ân</strong> bao gồm: Đế gỗ me tây, thân đèn cỡ nhỏ (15x15x18cm), vẽ hoa sen thủy mặc, kèm nến tealight. Giá ưu đãi đặc biệt:
+            <strong>Đèn thắp nến</strong> bao gồm: Đế gỗ me tây, thân đèn cỡ nhỏ (15x15x18cm), vẽ hoa sen thủy mặc, kèm nến tealight. Giá ưu đãi đặc biệt:
             <ul className="list-disc ml-5 mt-1">
               <li>Dưới 50 đèn: 260.000đ/đèn</li>
               <li>Từ 50 đèn: 240.000đ/đèn</li>

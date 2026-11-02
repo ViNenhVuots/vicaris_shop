@@ -1,19 +1,18 @@
 
 
-| Album ảnhBảng gỗ pơmu điêu khắcchữ thư pháp | BẢNG GỖ PƠMU ĐIÊU KHẮC CHỮ THƯ PHÁP Giá: 1.500.000đ \- 2.500.000đ Bảng gỗ pơmu – điêu khắc chữ thư pháp thủ công, phù hợp trang trí không gian sống và làm quà tặng.  |
+| Album ảnhBảng gỗ pơmu điêu khắcchữ thư pháp | BẢNG GỖ PƠMU ĐIÊU KHẮC CHỮ THƯ PHÁP Giá: 1.200.000đ \- 2.200.000đ Bảng gỗ pơmu – điêu khắc chữ thư pháp thủ công, phù hợp trang trí không gian sống và làm quà tặng.  |
 | :---: | :---- |
 
 Click chọn:
 
 **Đặt chữ theo yêu cầu \- giá liên hệ**  
-Uống trà đi (30x50cm) \- giá 1.500.000đ  
-Uống trà đi (đường kính 44cm) \- giá 1.500.000đ  
-Ngồi yên thấy rõ (36x60cm) \- giá 1.700.000đ  
-An trú thảnh thơi (36x60cm) \- giá 1.700.000đ  
-Đến đi thong dong (33x1m2) \- giá 2.300.000đ  
-Tuỳ duyên thuận pháp  (33x1m2) \- giá 2.300.000đ  
-Đến đi thong dong (33x1m2) \- giá 2.300.000đ  
-Chánh niệm là suối nguồn hạnh phúc (40x1m2) \- giá 2.500.000đ
+Uống trà đi (30x50cm) \- giá 1.200.000đ  
+Uống trà đi (đường kính 44cm) \- giá 1.200.000đ  
+Ngồi yên thấy rõ (36x60cm) \- giá 1.300.000đ  
+An trú thảnh thơi (36x60cm) \- giá 1.300.000đ  
+Đến đi thong dong (30x1m2) \- giá 2.000.000đ  
+Tuỳ duyên thuận pháp  (30x1m2) \- giá 2.000.000đ  
+Chánh niệm là suối nguồn hạnh phúc (40x1m2) \- giá 2.200.000đ
 
 # **Bảng gỗ pơmu – điêu khắc chữ thư pháp**
 
